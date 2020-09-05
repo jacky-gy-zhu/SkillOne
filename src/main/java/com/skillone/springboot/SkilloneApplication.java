@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SkilloneApplication {
 
     public static void main(String[] args) {
+
+        // run application
         SpringApplication.run(SkilloneApplication.class, args);
     }
 

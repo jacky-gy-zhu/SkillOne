@@ -8,7 +8,7 @@ public class SkilloneApplication {
 
     public static void main(String[] args) {
 
-        // run springboot application
+        // run springboot application.
         SpringApplication.run(SkilloneApplication.class, args);
     }
 

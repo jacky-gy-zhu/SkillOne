@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="175.0" y="0.0">com.okweb.allinone.designpatterns.adapter.classadapter.Voltage220</node>
+    <node x="0.0" y="82.0">com.okweb.allinone.designpatterns.adapter.classadapter.Phone</node>
+    <node x="118.0" y="82.0">com.okweb.allinone.designpatterns.adapter.classadapter.VoltageAdapter</node>
+    <node x="17.0" y="0.0">com.okweb.allinone.designpatterns.adapter.classadapter.Voltage5</node>
+    <node x="19.5" y="164.0">com.okweb.allinone.designpatterns.adapter.classadapter.Client</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.okweb.allinone.designpatterns.adapter.classadapter.Client" target="com.okweb.allinone.designpatterns.adapter.classadapter.Phone">
+      <point x="0.0" y="-16.0" />
+      <point x="24.5" y="16.0" />
+    </edge>
+    <edge source="com.okweb.allinone.designpatterns.adapter.classadapter.Client" target="com.okweb.allinone.designpatterns.adapter.classadapter.VoltageAdapter">
+      <point x="36.0" y="-16.0" />
+      <point x="109.5" y="139.0" />
+      <point x="212.0" y="139.0" />
+      <point x="0.0" y="16.0" />
+    </edge>
+    <edge source="com.okweb.allinone.designpatterns.adapter.classadapter.VoltageAdapter" target="com.okweb.allinone.designpatterns.adapter.classadapter.Voltage5">
+      <point x="-62.66666666666666" y="-16.0" />
+      <point x="149.33333333333334" y="57.0" />
+      <point x="113.0" y="57.0" />
+      <point x="32.0" y="16.0" />
+    </edge>
+    <edge source="com.okweb.allinone.designpatterns.adapter.classadapter.VoltageAdapter" target="com.okweb.allinone.designpatterns.adapter.classadapter.Voltage220">
+      <point x="62.66666666666666" y="-16.0" />
+      <point x="274.66666666666663" y="57.0" />
+      <point x="286.0" y="57.0" />
+      <point x="37.0" y="16.0" />
+    </edge>
+    <edge source="com.okweb.allinone.designpatterns.adapter.classadapter.Phone" target="com.okweb.allinone.designpatterns.adapter.classadapter.Voltage5">
+      <point x="0.0" y="-16.0" />
+      <point x="-32.0" y="16.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="244.5" y="153.0" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

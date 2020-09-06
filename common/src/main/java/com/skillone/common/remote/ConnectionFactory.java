@@ -7,7 +7,8 @@ import java.util.Properties;
 
 public class ConnectionFactory {
 
-    private static String connectionConfigFullPath = "/Users/jackyzhu/workspace/github/connectionConfig.properties";
+//    private static String connectionConfigFullPath = "/Users/jackyzhu/workspace/github/connectionConfig.properties";
+    private static String connectionConfigFullPath = "/Users/jackyzhu/Documents/workspace/projects/private/connectionConfig.properties";
 
     private static String ip;
     private static int port;

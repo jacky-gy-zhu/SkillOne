@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TestController {
 
     @ResponseBody
-    @RequestMapping("/test")
+    @RequestMapping("/")
     public String test() {
         Phone phone = new Phone();
         phone.charging(new VoltageAdapter());
-        return "success";
+        return "test";
     }
 }

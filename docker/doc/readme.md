@@ -122,7 +122,6 @@
 >> Command at Startup: sleep 5
 > [ONBUILD] 当构建一个被继承的DockerFile时运行命令，父镜像在被子继承后父镜像的ONBUILD被触发
 
-
 ## Reference Link
 > Intellij plugin [https://blog.csdn.net/boling_cavalry/article/details/100051325]
 

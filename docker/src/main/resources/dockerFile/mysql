@@ -1,0 +1,13 @@
+# 父镜像
+FROM mysql
+
+# 执行:
+# docker run -p 3306:3306
+# -v /conf:/etc/mysql/conf.d
+# -v /logs:/logs
+# -v /data:/var/lib/mysql
+# -e MYSQL_ROOT_PASSWORD=123456
+# -d mysql:5.6
+# docker exec -it `containerID` /bin/bash
+# mysql -u root -p
+# 备份：docker exec `containerID` sh -c 'exec mysqldump --all-databases -uroot -p123456' > /home/all-databases.sql

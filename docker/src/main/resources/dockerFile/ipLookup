@@ -1,0 +1,14 @@
+# 父镜像
+FROM centos
+
+# 安装curl
+RUN yum install -y curl
+
+# 命令行交互
+ENTRYPOINT [ "curl", "-s", "http://ip.cn" ]
+
+# 子类继承，构建后执行
+ONBUILD RUN echo "......."
+
+# 生成镜像：docker build -f ./ipLookup -t myip .
+# 执行: docker run myip -i

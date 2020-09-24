@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03_component_basic</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.11.6/babel.min.js"></script>
+</head>
+<body>
+    <div id="example1"></div>
+    <div id="example2"></div>
+
+    <script type="text/babel">
+        //1. 定义组件
+        /*
+            方式1：工厂函数组件（简单组件：没有状态的组件）
+         */
+        function MyComponent() {
+            return <h2>工厂函数组件（简单组件）</h2>
+        }
+        /*
+            方式2：ES6类组件（复杂组件：有状态的组件）
+         */
+        class MyComponent2 extends React.Component {
+            render() {
+                console.log(this)
+                return <h2>ES6类组件（复杂组件）</h2>
+            }
+        }
+
+        //2. 渲染组件标签
+        ReactDOM.render(<MyComponent/>, document.getElementById('example1'))
+        ReactDOM.render(<MyComponent2/>, document.getElementById('example2'))
+
+    </script>
+</body>
+</html>

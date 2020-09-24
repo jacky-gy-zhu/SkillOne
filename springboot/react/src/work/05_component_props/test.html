@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05_component_props</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.11.6/babel.min.js"></script>
+</head>
+<body>
+    <div id="example1"></div>
+    <div id="example2"></div>
+    <div id="example3"></div>
+    <div id="example4"></div>
+
+    <script type="text/babel">
+        /*
+            需求：自定义用来显示一个人员信息的组件，说明
+            1）如果性别没有指定，默认为男
+            2）如果年龄没有指定，默认为18
+         */
+
+        // 1. 定义组件
+        function Person(props) {
+            return (
+                <ul>
+                    <li>姓名：{props.name}</li>
+                    <li>年龄：{props.age}</li>
+                    <li>性别：{props.sex}</li>
+                </ul>
+            )
+        }
+
+        // 指定属性默认值
+        Person.defaultProps = {
+            sex: '男',
+            age: 18
+        }
+
+        // 指定属性值的类型和必要性
+        Person.propTypes = {
+            name: PropTypes.string.isRequired,
+            age: PropTypes.number
+        }
+
+        // 2. 渲染组件标签
+        const p1 = {
+            name: 'Tom',
+            age: 18,
+            sex: '女'
+        }
+        const p2 = {
+            name: 'Jack',
+        }
+
+        ReactDOM.render(<Person name={p1.name} age={p1.age} sex={p1.sex}/>, document.getElementById('example1'))
+
+        /*
+            ...的作用
+            1. 打包
+            function fn(...as) {} fn(1, 2, 3)
+            2. 解包
+            const arr1 = [1, 2, 3] const arr2 = [6, ...arr1, 9]
+         */
+        ReactDOM.render(<Person {...p1}/>, document.getElementById('example3'))
+
+        ReactDOM.render(<Person name={p2.name}/>, document.getElementById('example2'))
+
+        //1. 定义组件类
+        class People extends React.Component {
+
+            constructor(props) {
+                super(props);
+            }
+
+            render() {
+                console.log('People', this)
+                return (
+                    <ul>
+                        <li>name: {this.props.name}</li>
+                        <li>age: {this.props.age}</li>
+                        <li>sex: {this.props.sex}</li>
+                    </ul>
+                )
+            }
+        }
+
+        // 指定属性默认值
+        People.defaultProps = {
+            sex: '男',
+            age: 20
+        }
+
+        // 指定属性值的类型和必要性
+        People.propTypes = {
+            name: PropTypes.string.isRequired,
+            age: PropTypes.number
+        }
+
+        //2. 渲染组件标签
+        ReactDOM.render(<People {...p2}/>, document.getElementById('example4'))
+    </script>
+</body>
+</html>

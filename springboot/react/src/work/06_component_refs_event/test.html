@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06_component_refs_event</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.11.6/babel.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+
+    <script type="text/babel">
+        /*
+            需求：自定义组件，功能说明如下：
+            1. 界面如果页面所示
+            2. 点击按钮，提示第一个输入框中的值
+            3. 当第2个输入框失去焦点时，提示这个输入框中的值
+         */
+
+        //1. 定义组件
+        class MyComponent extends React.Component {
+
+            constructor(props) {
+                super(props);
+                this.showInput1 = this.showInput1.bind(this)
+                this.showInput2 = this.showInput2.bind(this)
+                this.handleBlur1 = this.handleBlur1.bind(this)
+                this.handleBlur2 = this.handleBlur2.bind(this)
+            }
+
+            showInput1() {
+                const input = this.refs.content1
+                alert(input.value)
+            }
+
+            showInput2() {
+                alert(this.input2.value)
+            }
+
+            handleBlur1() {
+                alert(this.input3.value)
+            }
+
+            handleBlur2(event) {
+                alert(event.target.value)
+            }
+
+            render() {
+                return (
+                    <div>
+                        <input type="text" ref="content1"/>&nbsp;&nbsp;
+                        <button onClick={this.showInput1}>提示输入数据1</button>&nbsp;&nbsp;
+                        <input type="text" ref={input => this.input2 = input}/>&nbsp;&nbsp;
+                        <button onClick={this.showInput2}>提示输入数据2</button>&nbsp;&nbsp;
+                        <input type="text" placeholder="失去焦点提示内容1" ref={input => this.input3 = input} onBlur={this.handleBlur1}/>
+                        <input type="text" placeholder="失去焦点提示内容2" onBlur={this.handleBlur2}/>
+                    </div>
+                )
+            }
+        }
+
+        //2. 渲染组件标签
+        ReactDOM.render(<MyComponent/>, document.getElementById('example'))
+    </script>
+</body>
+</html>

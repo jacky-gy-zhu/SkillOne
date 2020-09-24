@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02_JSX_DEMO</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.11.6/babel.min.js"></script>
+</head>
+<body>
+    <h1>前端JS框架列表</h1>
+    <div id="example1"></div>
+
+    <script type="text/babel">
+        /*
+            功能：动态展示列表数据
+         */
+        const names = ['jQuery', 'zepto', 'angular', 'react', 'vue']
+
+        //1. 创建虚拟DOM
+        /*
+            <ul>
+                <li>{name}</li>
+            </ul>
+         */
+        /*
+            问题：如何将一个数据的数组转换为一个标签的数组
+            使用数组的map()
+         */
+        const ul = (
+            <ul>
+                {
+                    names.map((name, index) => <li key={index}>{name}</li>)
+                }
+            </ul>
+        )
+
+        //2. 渲染虚拟DOM
+        ReactDOM.render(ul, document.getElementById('example1'))
+    </script>
+</body>
+</html>

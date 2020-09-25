@@ -181,3 +181,15 @@ class MyComponent extends React.Component {
 > see readme.doc
 > 移除组件：ReactDOM.unmountComponentAtNode(containerDom)
 >* componentWillUnmount()：组件将要被移除回调
+### 生命周期流程：
+> 第一次初始化渲染显示：ReactDOM.render()
+>* constructor()：创建对象初始化state
+>* UNSAFE_componentWillMount()：将要插入回调
+>* render()：用于插入虚拟DOM回调
+>* componentDidMount()：已经插入回调
+> 每次更新state：this.setState()
+>* UNSAFE_componentWillUpdate()：将要更新回调
+>* render()：更新（重新渲染）
+>* componentDidUpdate()：已经更新回调
+> 移除组件：ReactDOM.unmountComponentAtNode(containerDom)
+>* componentWillUnmount()：组件将要被移除回调

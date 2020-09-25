@@ -1,6 +1,7 @@
 # React
 > https://reactjs.org/
 > https://reactjs.org/docs/cdn-links.html
+> https://reactjs.org/docs/typechecking-with-proptypes.html
 > https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en
 > 声明式、组件化、一次学习，随处编写
 ```html
@@ -165,3 +166,18 @@ class MyComponent extends React.Component {
 > 实现动态组件
 >* 动态显示初始化数据
 >* 交互功能（从绑定事件监听开始）
+
+## 包含表单的组件分类
+> 受控组件：表单项输入数据能自动收集成状态
+```html
+<input type="password" value={this.state.pwd} onChange={this.handleChange}/>
+```
+> 非受控组件：需要时才手动读取表单输入框中的数据
+```html
+<input type="text" ref={input => this.nameInput = input}/>
+```
+
+## 组件的生命周期
+> see readme.doc
+> 移除组件：ReactDOM.unmountComponentAtNode(containerDom)
+>* componentWillUnmount()：组件将要被移除回调

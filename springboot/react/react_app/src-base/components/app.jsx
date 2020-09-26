@@ -6,7 +6,8 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                <img src={logo} alt="logo"/>
+                <img className='logo ' src={logo} alt="logo"/>
+                <p className='title'>react app组件</p>
             </div>
         )
     }

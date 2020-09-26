@@ -220,3 +220,25 @@ create-react-app hello-react
 cd hello-react
 npm start
 ```
+### 下载prop-types 
+> npm install --save prop-types
+### 箭头函数帮助不能在构造器里定义bind(this)
+```javascript
+handleSubmit = () => {
+
+}
+```
+### 给组件类添加属性
+```javascript
+import PropTypes from 'prop-types'
+static propTypes = {
+    addComment: PropTypes.func.isRequired
+}
+```
+### 给组件对象添加属性
+```javascript
+state = {
+    userName: '',
+    content: ''
+}
+```

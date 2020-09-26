@@ -50,7 +50,8 @@
 > state是组件对象最重要的属性，值是对象（可以包含多个数据）
 > 组件被称为"状态机"，通过更新组件的state来更新对应的页面显示（重新渲染组件）
 > 编码操作
->* 初始化状态：
+>
+> * 初始化状态：
 ```javascript
 constructor(props){
     super(props)
@@ -164,8 +165,9 @@ class MyComponent extends React.Component {
 > 拆分组件：拆分界面，抽取组件
 > 实现静态组件：使用组件实现静态页面效果
 > 实现动态组件
->* 动态显示初始化数据
->* 交互功能（从绑定事件监听开始）
+>
+> * 动态显示初始化数据
+> * 交互功能（从绑定事件监听开始）
 
 ## 包含表单的组件分类
 > 受控组件：表单项输入数据能自动收集成状态
@@ -180,7 +182,8 @@ class MyComponent extends React.Component {
 ## 组件的生命周期
 > see readme.doc
 > 移除组件：ReactDOM.unmountComponentAtNode(containerDom)
->* componentWillUnmount()：组件将要被移除回调
+>
+> * componentWillUnmount()：组件将要被移除回调
 ### 生命周期流程：
 > 第一次初始化渲染显示：ReactDOM.render()
 >* constructor()：创建对象初始化state
@@ -193,3 +196,17 @@ class MyComponent extends React.Component {
 >* componentDidUpdate()：已经更新回调
 > 移除组件：ReactDOM.unmountComponentAtNode(containerDom)
 >* componentWillUnmount()：组件将要被移除回调
+
+### this.setState({}) 区域更新
+> setState会去拿新的状态去比较老的状态，Diff算法只更新更新过的状态
+
+# React APP
+## package.json
+### 标示
+> name
+> version
+### 依赖
+> dependencies
+> devDependencies
+### 运行/打包
+> scripts

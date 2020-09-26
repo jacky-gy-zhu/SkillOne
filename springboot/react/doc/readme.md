@@ -196,6 +196,7 @@ class MyComponent extends React.Component {
 >* componentDidUpdate()：已经更新回调
 > 移除组件：ReactDOM.unmountComponentAtNode(containerDom)
 >* componentWillUnmount()：组件将要被移除回调
+![Imgur](https://i.imgur.com/v2HjuQ3.png)
 
 ### this.setState({}) 区域更新
 > setState会去拿新的状态去比较老的状态，Diff算法只更新更新过的状态

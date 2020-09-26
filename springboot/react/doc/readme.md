@@ -1,3 +1,5 @@
+>https://github.com/zxfjd3g/170925_react_test/blob/master/README.md
+
 # React
 > https://reactjs.org/
 > https://reactjs.org/docs/cdn-links.html
@@ -211,3 +213,10 @@ class MyComponent extends React.Component {
 > devDependencies
 ### 运行/打包
 > scripts
+## 创建项目并启动
+```bash
+npm install -g create-react-app
+create-react-app hello-react
+cd hello-react
+npm start
+```

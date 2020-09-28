@@ -11,12 +11,14 @@
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
 <script src="https://unpkg.com/@babel/standalone@7.11.6/babel.min.js"></script>
+<script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
 ```
 ```html
 <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/prop-types@15.6/prop-types.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone@7.11.6/babel.min.js"></script>
+<script crossorigin="anonymous" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
 ```
 ## 高效
 >* 虚拟DOM，不总是操作DOM
@@ -167,7 +169,6 @@ class MyComponent extends React.Component {
 > 拆分组件：拆分界面，抽取组件
 > 实现静态组件：使用组件实现静态页面效果
 > 实现动态组件
->
 > * 动态显示初始化数据
 > * 交互功能（从绑定事件监听开始）
 
@@ -220,8 +221,14 @@ create-react-app hello-react
 cd hello-react
 npm start
 ```
+## 发布产品
+> npm run build
+> npm install -g serve
+> serve -s build
 ### 下载prop-types 
 > npm install --save prop-types
+### 下载axios
+> npm install --save axios
 ### 箭头函数帮助不能在构造器里定义bind(this)
 ```javascript
 handleSubmit = () => {
@@ -241,4 +248,133 @@ state = {
     userName: '',
     content: ''
 }
+```
+
+## React Ajax
+### axios：轻量级
+>a. 封装XmlHttpRequest对象的ajax
+>b. promise风格 [.then()]
+>c. 可以用在浏览器端和node服务器端
+```javascript
+// get
+axios.get('/user', {
+    params: {
+        id: 123
+    }
+})
+.then(response => {
+    console.log(response)
+})
+.catch(error => {
+    console.log(error)
+})
+
+// post
+axios.post('/user', {
+    firstName: 'Fred',
+    lastName: 'Flints'
+})
+.then(response => {
+    console.log(response)
+})
+.catch(error => {
+    console.log(error)
+})
+```
+### fetch：原生函数，但老版本浏览器不支持
+>a. 不再使用XmlHttpRequest对象提交ajax请求
+>b. 为了兼容低版本但浏览器，可以引入兼容库fetch.js
+```javascript
+// get
+fetch(url)
+.then(response => {
+    return response.json()
+})
+.then(data => {
+    console.log(data)
+}).catch(error => {
+    console.log(error)
+})
+```
+### js对象相互转换
+```javascript
+const users = result.items.map((item, index) => {
+    return {
+        name: item.login,
+        url: item.html_url,
+        avatarUrl: item.avatar_url
+    }
+})
+const users = result.items.map((item, index) => (
+    {
+        name: item.login,
+        url: item.html_url,
+        avatarUrl: item.avatar_url
+    }
+))
+```
+### 组件间通讯方式
+>* 方式一：通过props传递
+>1）共同的数据放在父组件上，特有的数据放在自己的组件内部（state）
+>2）通过props可以传递一般数据和函数数据，只能一层一层传递
+>3）一般数据->父组件传递数据给子组件->子组件读取数据
+>4）函数数据->子组件传递数据给父组件->子组件调用函数
+>* 方式二：使用消息订阅（subscribe）-发布（publish）机制
+>1）工具库：PubSubJS
+>2）下载：npm install pubsub-js --save
+>3）使用：
+```javascript
+//引入
+import PubSub from 'pubsub-js' 
+// 订阅消息（search）
+PubSub.subscribe('search', (msg, searchName) => { 回调函数... }
+// 发布消息（search）【触发事件的地方】
+PubSub.publish('search', name)
+```
+>* 方式三：redux
+
+# React-router相关API
+## 组件
+> <BrowserRouter/>
+> <HashRouter/>
+> <Route></Route>
+> <Rediredt></Rediredt>
+> <Link/>
+> <NavLink></NavLink>
+> <Switch></Switch>
+## 其他
+> history对象
+> match对象
+> withRouter函数
+## 安装
+> npm install --save react-router-dom
+```
+// index.js
+import React from 'react'
+import {render} from 'react-dom'
+import {BrowserRouter} from "react-router-dom";
+
+import App from './components/app'
+
+render(
+    (
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
+    ),
+    document.getElementById('root')
+)
+```
+```
+// app.jsx
+import {NavLink, Switch, Route, Redirect} from 'react-router-dom'
+
+<NavLink className="list-group-item" to="/comment">Comment</NavLink>
+<NavLink className="list-group-item" to="/profile2">Profile2</NavLink>
+<Switch>
+    <Route path='/comment' component={Comment}/>
+    <Route path='/profile' component={Profile}/>
+    <Route path='/profile2' component={Profile2}/>
+    <Redirect to="/profile"/>
+</Switch>
 ```

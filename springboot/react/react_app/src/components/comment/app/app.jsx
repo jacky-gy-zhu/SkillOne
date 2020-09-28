@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import CommentAdd from "../comment-add/comment-add";
 import CommentList from "../comment-list/comment-list";
 
-export default class App extends Component {
+export default class Comment extends Component {
 
     /*constructor(props) {
         super(props);

@@ -15,10 +15,9 @@ export default class CommentItem extends Component {
         const {comment, deleteComment, index} = this.props
         // 提示
         if (window.confirm(`确定要删除${comment.userName}的评论吗？`)) {
+            // 确定后删除
             deleteComment(index)
         }
-
-        // 确定后删除
     }
 
     render() {

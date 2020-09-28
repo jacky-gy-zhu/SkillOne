@@ -378,3 +378,25 @@ import {NavLink, Switch, Route, Redirect} from 'react-router-dom'
     <Redirect to="/profile"/>
 </Switch>
 ```
+### MyNavLink 对NavLink的优化
+```javascript
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {NavLink} from "react-router-dom"
+
+export default class MyNavLink extends Component {
+
+    static propTypes = {
+        to: PropTypes.string.isRequired
+    }
+
+    render() {
+        return <NavLink activeClassName="activeClass" {...this.props}></NavLink>
+    }
+}
+```
+### 如何编写路由效果
+> 1）编写路由组件
+> 2）在父路由组件中指定
+>   路由链接：<NavLink>
+>   路由：<Route>

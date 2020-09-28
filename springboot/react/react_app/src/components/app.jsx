@@ -1,8 +1,12 @@
 import React, {Component} from 'react'
 import {NavLink, Switch, Route, Redirect} from 'react-router-dom'
+
+import MyNavLink from './my-nav-link'
 import Comment from './comment/app/app'
 import Profile from './profile/profile'
 import Profile2 from './profile2/profile'
+import Home from '../views/home'
+import About from '../views/about'
 
 export default class App extends Component {
 
@@ -17,14 +21,18 @@ export default class App extends Component {
                 <div className="row">
                     <div className="col-xs-offset-2 col-xs-2">
                         <div className="list-group">
-                            <NavLink className="list-group-item" to="/comment">Comment</NavLink>
-                            <NavLink className="list-group-item" to="/profile2">Profile2</NavLink>
+                            <MyNavLink className="list-group-item" to="/home">Home</MyNavLink>
+                            <MyNavLink className="list-group-item" to="/about">About</MyNavLink>
+                            <MyNavLink className="list-group-item" to="/comment">Comment</MyNavLink>
+                            <MyNavLink className="list-group-item" activeClassName="activeClass1" to="/profile2">Profile2</MyNavLink>
                         </div>
                     </div>
                     <div className="col-xs-offset-2 col-xs-6">
                         <div className="panel">
                             <div className="panel-body">
                                 <Switch>
+                                    <Route path='/home' component={Home}/>
+                                    <Route path='/about' component={About}/>
                                     <Route path='/comment' component={Comment}/>
                                     <Route path='/profile' component={Profile}/>
                                     <Route path='/profile2' component={Profile2}/>

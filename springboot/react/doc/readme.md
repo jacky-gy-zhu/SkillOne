@@ -398,5 +398,53 @@ export default class MyNavLink extends Component {
 ### 如何编写路由效果
 > 1）编写路由组件
 > 2）在父路由组件中指定
->   路由链接：<NavLink>
->   路由：<Route>
+>   路由链接：<NavLink/>
+>   路由：<Switch><Route/></Switch>
+###路径中设置动态参数（:xxx 占位符，即props.match.params.xxx变量名
+```html
+<Route path="/home/message/:id" component={MessageDetail}/>
+```
+```javascript
+const {id} = props.match.params
+```
+### 路由请求和非路由请求
+> 路由请求不会发送http请求：<NavLink to="/user">xxx</NavLink>
+> 非路由请求会发送http请求：<a href="/user">xxx</a>
+### javascript方法来发送路由请求
+```javascript
+// 历史记录是一个栈结构
+// 路由请求push方式
+this.props.history.push(`/home/message/${id}`)
+// 路由请求replace方式
+this.props.history.replace(`/home/message/${id}`)
+// 路由请求回退
+this.props.history.goBack()
+// 路由请求前进
+this.props.history.goForward()
+```
+
+# React-ui
+> https://material-ui.com/
+> https://thefront-styleguide.maccarianagency.com/ [！！！用户后台设计参考！！！]
+
+## js、css文件按需按打包
+### 安装react-app-rewired和babel-plugin-import
+> npm install react-app-rewired --save-dev
+> npm install babel-plugin-import --save-dev
+### 修改默认配置
+```json
+"scripts": {
+  "start": "react-app-rewired start",
+  "build": "react-app-rewired build",
+  "test": "react-app-rewired test --env=jsdom"
+}
+```
+### 添加config-overrides.js
+> 不需要再去引入css
+```javascript
+const {injectBabelPlugin} = require('react-app-rewired');
+module.exports = function override(config, env) {
+    config = injectBabelPlugin(['import', {libraryName: 'antd-mobile', style: 'css'}], config);
+    return config;
+}
+```

@@ -1,5 +1,11 @@
 >https://github.com/zxfjd3g/170925_react_test/blob/master/README.md
 
+# package.json里面更改配置后用npm下载
+> 1.package.json不存在时
+> 命令:npm init可自动创建package.json文件
+> 2.package.json存在时
+> 直接命令:npm install 或者 npm install –save-dev会自动将package.json中的模块安装到node-modules文件夹下
+
 # React
 > https://reactjs.org/
 > https://reactjs.org/docs/cdn-links.html
@@ -448,3 +454,125 @@ module.exports = function override(config, env) {
     return config;
 }
 ```
+
+# Redux
+## 下载依赖包
+> npm install --save redux
+## redux核心API
+### createStore()
+> 作用：创建包含指定reducer的store对象
+```javascript
+import {createStore} from 'redux'
+import counter from './reducers/counter'
+const store = createStore(counter)
+```
+### store对象
+![Imgur](https://i.imgur.com/OHBGnpT.png)
+> 作用：redux库最核心的管理对象
+> 它的内部维护者
+> * state
+> * reducer
+> 核心方法：
+> * getState()
+> * dispatch(action)
+> * subscribe(listener)
+> 编码
+```javascript
+store.getState()
+store.dispatch({type:'INCREMENT', number})
+store.subscribe(render)
+```
+### Redux的三个核心概念
+1. action
+    标示要执行行为的对象
+    包含2个方面的属性
+    type: 标示属性，值为字符串，唯一，必要属性
+    xxx: 数据属性，值类型任意，可选属性
+    例子：
+```javascript
+    const action = {
+        type: 'INCREMENT',
+        data: 2
+    }
+```
+    Action Creator（创建Action的函数）
+    const increment = (number) => ({type: 'INCREMENT', data: number})
+2. reducer
+    根据老的state和action，产生新的state的纯函数
+    样例
+```javascript
+    export default function counter(state = 0, action) {
+        switch(action.type) {
+            case 'INCREMENT':
+                return state + action.data
+            case 'DECREMENT':
+                return state - action.data
+            default:
+                return state
+        }
+    }
+```
+    注意：
+    返回一个新的状态
+    不要修改原来的状态
+3. store对象
+    将state、action与reducer联系在一起的对象
+    如何得到此对象？
+```javascript
+    import {createStore} from 'redux'
+    import reducer from './reducers'
+    const store = createStore(reducer)
+```
+    此对象的功能？
+    getState()：得到state
+    dispatch(action)：分发action，触发reducer调用，产生新的state
+    subscribe(listener)：注册监听，当产生了新的state时，自动调用
+### import引入方式
+> import * as actions from '../redux/actions' // 在没有export default的方式下
+> import {INCREMENT, DECREMENT} from '../redux/actions'
+
+# React-redux
+> 一个react的插件库
+> 专门用来简化react应用中使用redux
+> npm install --save react-redux
+```javascript
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Provider} from 'react-redux'
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>
+, document.getElementById('root')
+)
+```
+```javascript
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
+
+class Counter extends Component {
+    static propTypes = {
+        count: PropTypes.number.isRequired,
+        increment: PropTypes.func.isRequired,
+        decrement: PropTypes.func.isRequired
+    }
+}
+export default connect(
+    state => ({
+        count: state
+    }), // 传递reducer里面的state
+    {increment, decrement} // 传递reducer里面的action
+)(Counter) // reducer是和store绑定的，而store在<Provider store={store}>标签里面包含
+```
+## React-redux将所有组件分成两大类
+1）UI组件
+    只负责UI的呈现，不带有任何业务逻辑
+    通过props接受数据（一般数据和函数）
+    不使用任何Redux的API
+    一般保存在components文件夹下
+2）容器组件
+    负责管理数据和业务逻辑，不负责UI的呈现
+    使用Redux的API
+    一般保存在containers文件夹下

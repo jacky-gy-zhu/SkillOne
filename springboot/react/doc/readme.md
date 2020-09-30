@@ -637,3 +637,30 @@ newComments = [{}, ...comments]
 // 替换（改）
 comments.splice(index, 1, {})
 ```
+
+# 跨域访问
+```javascript
+getData(){
+        //修改请求头
+        let myHeaders = new Headers({
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'text/plain'
+        });
+        fetch('http://127.0.0.1:8080/hello',{
+            method:'GET',
+            headers: myHeaders,
+            mode: 'cors',
+            //转或称字符串格式
+        }).then(res=>res.json()).then(
+            data=>{
+                console.log(data);
+                // eslint-disable-next-line
+                data.map((key)=>{
+                    this.setState({
+                        mytext: [...this.state.mytext, key]
+                    })
+                })
+            }
+        )
+}
+```

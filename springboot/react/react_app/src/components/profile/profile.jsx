@@ -16,7 +16,7 @@ export default class Profile extends Component {
     render() {
         return (
             <div id="profile">
-                <div className="container">
+                <div>
                     <Search setSearchName={this.setSearchName}/>
                     <Main searchName={this.state.searchName}/>
                 </div>

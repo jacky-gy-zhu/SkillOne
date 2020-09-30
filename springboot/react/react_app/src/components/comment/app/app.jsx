@@ -61,7 +61,7 @@ export default class Comment extends Component {
             <div id="app">
                 <div>
                     <header className="site-header jumbotron">
-                        <div className="container">
+                        <div>
                             <div className="row">
                                 <div className="col-xs-12">
                                     <h1>请发表对React对评论</h1>
@@ -69,7 +69,7 @@ export default class Comment extends Component {
                             </div>
                         </div>
                     </header>
-                    <div className="container">
+                    <div>
                         <CommentAdd addComment={this.addComment}/>
                         <CommentList comments={comments} deleteComment={this.deleteComment}/>
                     </div>

@@ -562,7 +562,7 @@ class Counter extends Component {
 export default connect(
     state => ({
         count: state
-    }), // 传递reducer里面的state
+    }), // 传递reducer里面的state，state的结构在reducer里面定义，包括初始化结构
     {increment, decrement} // 传递reducer里面的action
 )(Counter) // reducer是和store绑定的，而store在<Provider store={store}>标签里面包含
 ```
@@ -576,6 +576,29 @@ export default connect(
     负责管理数据和业务逻辑，不负责UI的呈现
     使用Redux的API
     一般保存在containers文件夹下
+> redux整合多个reducer
+```javascript
+// 在reducers.js里面
+import {combineReducers} from 'redux'
+const counter = (state = 0, action) => {
+    return state
+}
+const comment = (state = [], action) => {
+    return state
+}
+export default combineReducers({
+    counter,
+    comment
+})
+
+// 在containers里面需要修改
+export default connect(
+    state => ({
+        count: state.counter // 传递reducer里面的state这个对象里面的对应的state
+    }), 
+    {increment, decrement, incrementAsync}
+)(Counter)
+```
 
 ## redux异步编程
 > 下载redux插件（异步中间件）
@@ -602,4 +625,15 @@ export const incrementAsync = (data) => (dispatch) => {
         dispatch(increment(data))
     },2000)
 }
+```
+### some ES6 array operation
+```javascript
+// 删除
+comments.splice(index, 1)
+newComments = comments.filter((comment, index) => index != action.data)
+// 添加
+comments.splice(index, 0, {})
+newComments = [{}, ...comments]
+// 替换（改）
+comments.splice(index, 1, {})
 ```

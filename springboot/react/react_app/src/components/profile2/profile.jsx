@@ -11,7 +11,7 @@ export default class Profile2 extends Component {
     render() {
         return (
             <div id="profile">
-                <div className="container">
+                <div>
                     <Search/>
                     <Main/>
                 </div>

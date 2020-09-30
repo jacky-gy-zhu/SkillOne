@@ -576,3 +576,30 @@ export default connect(
     负责管理数据和业务逻辑，不负责UI的呈现
     使用Redux的API
     一般保存在containers文件夹下
+
+## redux异步编程
+> 下载redux插件（异步中间件）
+> npm install --save redux-thunk
+```javascript
+import {createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk'
+// 根据counter函数（reducer）创建store对象
+const store = createStore(
+    counter,
+    applyMiddleware(thunk) // 应用上异步中间件
+)
+export default store
+```
+actions.js里面包含所有action creator
+同步的action都返回一个对象
+异步的action都返回一个函数！
+```javascript
+// 异步
+export const incrementAsync = (data) => (dispatch) => {
+    // 异步代码
+    setTimeout(() => {
+        // 2s后才去返回一个action对象
+        dispatch(increment(data))
+    },2000)
+}
+```

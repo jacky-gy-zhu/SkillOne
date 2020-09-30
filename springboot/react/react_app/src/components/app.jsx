@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import {NavLink, Switch, Route, Redirect} from 'react-router-dom'
 
 import MyNavLink from './my-nav-link'
-import Comment from './comment/app/app'
 import Profile from './profile/profile'
 import Profile2 from './profile2/profile'
 import Home from '../views/home'
 import About from '../views/about'
+import CommentViewer from '../views/comment-viewer'
 import ReduxCounter from '../views/redux-counter'
 
 export default class App extends Component {
@@ -35,7 +35,7 @@ export default class App extends Component {
                                 <Switch>
                                     <Route path='/home' component={Home}/>
                                     <Route path='/about' component={About}/>
-                                    <Route path='/comment' component={Comment}/>
+                                    <Route path='/comment' component={CommentViewer}/>
                                     <Route path='/profile' component={Profile}/>
                                     <Route path='/profile2' component={Profile2}/>
                                     <Route path='/counter' component={ReduxCounter}/>

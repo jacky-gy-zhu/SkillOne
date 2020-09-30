@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import Counter from "../containers/app";
+import Counter from "../containers/counter";
 
 export default class ReduxCounter extends Component {
 

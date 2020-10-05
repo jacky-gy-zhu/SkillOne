@@ -65,6 +65,7 @@
 > list all containers including stopped [docker ps -a]
 > list the latest 3 containers [docker ps -n `3`]
 > only list container ID [docker ps -q]
+> list containers [docker container ls]
 ### exit container
 > stop and exit container when in container console [exit]
 > exit but not stop container when in container console [ctrl+Q+P]

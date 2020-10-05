@@ -1,8 +1,8 @@
 package com.skillone.springboot.mock;
 
-public class LoginReturn {
+public class ApiReturn {
     private int status;
-    private Login data;
+    private Object data;
 
     public int getStatus() {
         return status;
@@ -12,11 +12,11 @@ public class LoginReturn {
         this.status = status;
     }
 
-    public Login getData() {
+    public Object getData() {
         return data;
     }
 
-    public void setData(Login data) {
+    public void setData(Object data) {
         this.data = data;
     }
 }

@@ -664,3 +664,18 @@ getData(){
         )
 }
 ```
+## withRouter高阶组件
+```javascript
+import {withRouter} from 'react-router-dom'
+/*
+withRouter高阶组件:
+包装非路由组件, 返回一个新的组件
+新的组件向非路由组件传递3个属性: history/location/match
+ */
+export default withRouter(LeftNav)
+```
+## setState默认是异步的方法
+    是一个异步方法
+    setState(object, () => {
+      在状态更新且重新render()后执行    
+    })  

@@ -679,3 +679,28 @@ export default withRouter(LeftNav)
     setState(object, () => {
       在状态更新且重新render()后执行    
     })  
+
+## rich text editor
+> https://github.com/jpuri/react-draft-wysiwyg
+```javascript
+import {EditorState, convertToRaw} from 'draft-js'
+import {Editor} from 'react-draft-wysiwyg'
+import draftToHtml from 'draft-js-to-html'
+import htmlToDraft from 'html-to-draftjs'
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+
+render(){
+    return <Editor
+                editorState={editorState}
+                wrapperClassName="demo-wrapper"
+                editClassName="demo-editor"
+                onEditorStateChange={this.onEditorStateChange}
+            />
+            /*
+            <textarea
+                disabled
+                value={draftToHtml{convertToRaw(editorState.getCurrentContent()))}
+            />
+             */
+}
+```

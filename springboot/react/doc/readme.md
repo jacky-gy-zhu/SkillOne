@@ -81,6 +81,10 @@ this.setState({
     stateProp1: value1,
     stateProp2: value2
 })
+
+this.setState(state => ({count:state.count+1}), () => {
+    console.log(this.state.count)
+})
 ```
 >* (难点)bind的使用
 ```javascript
@@ -703,4 +707,7 @@ render(){
             />
              */
 }
+
+...
+resolve({data:{link:url}})
 ```

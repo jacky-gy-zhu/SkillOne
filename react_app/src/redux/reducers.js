@@ -34,6 +34,6 @@ const comment = (state = [], action) => {
 }
 
 export default combineReducers({
-    counter,
+    counter1:counter,
     comment
 })

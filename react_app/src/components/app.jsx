@@ -8,6 +8,7 @@ import Home from '../views/home'
 import About from '../views/about'
 import CommentViewer from '../views/comment-viewer'
 import ReduxCounter from '../views/redux-counter'
+import Counter from "../containers/counter";
 
 export default class App extends Component {
 
@@ -38,7 +39,7 @@ export default class App extends Component {
                                     <Route path='/comment' component={CommentViewer}/>
                                     <Route path='/profile' component={Profile}/>
                                     <Route path='/profile2' component={Profile2}/>
-                                    <Route path='/counter' component={ReduxCounter}/>
+                                    <Route path='/counter' component={Counter}/>
                                     <Redirect to="/profile"/>
                                 </Switch>
                             </div>

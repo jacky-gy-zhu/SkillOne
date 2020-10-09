@@ -62,7 +62,7 @@
 > 编码操作
 >
 > * 初始化状态：
-```javascript
+```
 constructor(props){
     super(props)
     this.state = {
@@ -72,11 +72,11 @@ constructor(props){
 }
 ```
 >* 读取某个状态值
-```javascript
+```
     this.state.statePropertyName
 ```
 >* 更新状态 -> 组件界面更新
-```javascript
+```
 this.setState({
     stateProp1: value1,
     stateProp2: value2
@@ -87,7 +87,7 @@ this.setState(state => ({count:state.count+1}), () => {
 })
 ```
 >* (难点)bind的使用
-```javascript
+```
 constructor(props) {
     super(props)
     // 初始化状态
@@ -103,13 +103,13 @@ constructor(props) {
 
 ### 2. props
 > 默认属性值
-```javascript
+```
 Person.defaultProps = {
     name: 'Mary'
 }
 ```
 > 对props中的属性值进行类型限制和必要性限制
-```javascript
+```
 // v15
 Person.propTypes = {
     name: React.PropTypes.string.isRequired,
@@ -121,7 +121,7 @@ Person.propTypes = {
     age: PropTypes.number
 }
 ```
-```javascript
+```
 //...的作用
 //1. 打包
 function fn(...as) {} 
@@ -132,7 +132,7 @@ const arr2 = [6, ...arr1, 9]
 ```
 
 ### 3. refs
-```javascript
+```
 class MyComponent extends React.Component {
 
     constructor(props) {
@@ -184,11 +184,11 @@ class MyComponent extends React.Component {
 
 ## 包含表单的组件分类
 > 受控组件：表单项输入数据能自动收集成状态
-```html
+```
 <input type="password" value={this.state.pwd} onChange={this.handleChange}/>
 ```
 > 非受控组件：需要时才手动读取表单输入框中的数据
-```html
+```
 <input type="text" ref={input => this.nameInput = input}/>
 ```
 
@@ -235,25 +235,25 @@ npm start
 > npm run build
 > npm install -g serve
 > serve -s build
-### 下载prop-types 
+### 下载prop-types
 > npm install --save prop-types
 ### 下载axios
 > npm install --save axios
 ### 箭头函数帮助不能在构造器里定义bind(this)
-```javascript
+```
 handleSubmit = () => {
 
 }
 ```
 ### 给组件类添加属性
-```javascript
+```
 import PropTypes from 'prop-types'
 static propTypes = {
     addComment: PropTypes.func.isRequired
 }
 ```
 ### 给组件对象添加属性
-```javascript
+```
 state = {
     userName: '',
     content: ''
@@ -263,9 +263,9 @@ state = {
 ## React Ajax
 ### axios：轻量级
 >a. 封装XmlHttpRequest对象的ajax
->b. promise风格 [.then()]
+>b. promise风格 .then()
 >c. 可以用在浏览器端和node服务器端
-```javascript
+```
 // get
 axios.get('/user', {
     params: {
@@ -294,7 +294,7 @@ axios.post('/user', {
 ### fetch：原生函数，但老版本浏览器不支持
 >a. 不再使用XmlHttpRequest对象提交ajax请求
 >b. 为了兼容低版本但浏览器，可以引入兼容库fetch.js
-```javascript
+```
 // get
 fetch(url)
 .then(response => {
@@ -307,7 +307,7 @@ fetch(url)
 })
 ```
 ### js对象相互转换
-```javascript
+```
 const users = result.items.map((item, index) => {
     return {
         name: item.login,
@@ -333,7 +333,7 @@ const users = result.items.map((item, index) => (
 >1）工具库：PubSubJS
 >2）下载：npm install pubsub-js --save
 >3）使用：
-```javascript
+```
 //引入
 import PubSub from 'pubsub-js' 
 // 订阅消息（search）
@@ -389,7 +389,7 @@ import {NavLink, Switch, Route, Redirect} from 'react-router-dom'
 </Switch>
 ```
 ### MyNavLink 对NavLink的优化
-```javascript
+```
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {NavLink} from "react-router-dom"
@@ -414,14 +414,14 @@ export default class MyNavLink extends Component {
 ```html
 <Route path="/home/message/:id" component={MessageDetail}/>
 ```
-```javascript
+```
 const {id} = props.match.params
 ```
 ### 路由请求和非路由请求
 > 路由请求不会发送http请求：<NavLink to="/user">xxx</NavLink>
 > 非路由请求会发送http请求：<a href="/user">xxx</a>
-### javascript方法来发送路由请求
-```javascript
+### 方法来发送路由请求
+```
 // 历史记录是一个栈结构
 // 路由请求push方式
 this.props.history.push(`/home/message/${id}`)
@@ -435,14 +435,13 @@ this.props.history.goForward()
 
 # React-ui
 > https://material-ui.com/
-> https://thefront-styleguide.maccarianagency.com/ [！！！用户后台设计参考！！！]
 
 ## js、css文件按需按打包
 ### 安装react-app-rewired和babel-plugin-import
 > npm install react-app-rewired --save-dev
 > npm install babel-plugin-import --save-dev
 ### 修改默认配置
-```json
+```
 "scripts": {
   "start": "react-app-rewired start",
   "build": "react-app-rewired build",
@@ -451,7 +450,7 @@ this.props.history.goForward()
 ```
 ### 添加config-overrides.js
 > 不需要再去引入css
-```javascript
+```
 const {injectBabelPlugin} = require('react-app-rewired');
 module.exports = function override(config, env) {
     config = injectBabelPlugin(['import', {libraryName: 'antd-mobile', style: 'css'}], config);
@@ -465,7 +464,7 @@ module.exports = function override(config, env) {
 ## redux核心API
 ### createStore()
 > 作用：创建包含指定reducer的store对象
-```javascript
+```
 import {createStore} from 'redux'
 import counter from './reducers/counter'
 const store = createStore(counter)
@@ -481,7 +480,7 @@ const store = createStore(counter)
 > * dispatch(action)
 > * subscribe(listener)
 > 编码
-```javascript
+```
 store.getState()
 store.dispatch({type:'INCREMENT', number})
 store.subscribe(render)
@@ -493,7 +492,7 @@ store.subscribe(render)
     type: 标示属性，值为字符串，唯一，必要属性
     xxx: 数据属性，值类型任意，可选属性
     例子：
-```javascript
+```
     const action = {
         type: 'INCREMENT',
         data: 2
@@ -504,7 +503,7 @@ store.subscribe(render)
 2. reducer
     根据老的state和action，产生新的state的纯函数
     样例
-```javascript
+```
     export default function counter(state = 0, action) {
         switch(action.type) {
             case 'INCREMENT':
@@ -522,7 +521,7 @@ store.subscribe(render)
 3. store对象
     将state、action与reducer联系在一起的对象
     如何得到此对象？
-```javascript
+```
     import {createStore} from 'redux'
     import reducer from './reducers'
     const store = createStore(reducer)
@@ -539,7 +538,7 @@ store.subscribe(render)
 > 一个react的插件库
 > 专门用来简化react应用中使用redux
 > npm install --save react-redux
-```javascript
+```
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
@@ -551,7 +550,7 @@ ReactDOM.render(
 , document.getElementById('root')
 )
 ```
-```javascript
+```
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
@@ -581,7 +580,7 @@ export default connect(
     使用Redux的API
     一般保存在containers文件夹下
 > redux整合多个reducer
-```javascript
+```
 // 在reducers.js里面
 import {combineReducers} from 'redux'
 const counter = (state = 0, action) => {
@@ -607,7 +606,7 @@ export default connect(
 ## redux异步编程
 > 下载redux插件（异步中间件）
 > npm install --save redux-thunk
-```javascript
+```
 import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 // 根据counter函数（reducer）创建store对象
@@ -620,7 +619,7 @@ export default store
 actions.js里面包含所有action creator
 同步的action都返回一个对象
 异步的action都返回一个函数！
-```javascript
+```
 // 异步
 export const incrementAsync = (data) => (dispatch) => {
     // 异步代码
@@ -631,7 +630,7 @@ export const incrementAsync = (data) => (dispatch) => {
 }
 ```
 ### some ES6 array operation
-```javascript
+```
 // 删除
 comments.splice(index, 1)
 newComments = comments.filter((comment, index) => index != action.data)
@@ -643,7 +642,7 @@ comments.splice(index, 1, {})
 ```
 
 # 跨域访问
-```javascript
+```
 getData(){
         //修改请求头
         let myHeaders = new Headers({
@@ -669,7 +668,7 @@ getData(){
 }
 ```
 ## withRouter高阶组件
-```javascript
+```
 import {withRouter} from 'react-router-dom'
 /*
 withRouter高阶组件:
@@ -686,7 +685,7 @@ export default withRouter(LeftNav)
 
 ## rich text editor
 > https://github.com/jpuri/react-draft-wysiwyg
-```javascript
+```
 import {EditorState, convertToRaw} from 'draft-js'
 import {Editor} from 'react-draft-wysiwyg'
 import draftToHtml from 'draft-js-to-html'

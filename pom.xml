@@ -15,6 +15,7 @@
         <module>designpattern</module>
         <module>docker</module>
         <module>react</module>
+        <module>webpack</module>
     </modules>
 
 

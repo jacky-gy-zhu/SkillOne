@@ -213,7 +213,14 @@ module.exports = {
         // 需求：需要有结构的html文件
         new HtmlWebpackPlugin({
             // 复制 一个html文件，并自动引入打包输出的所有资源（js/css）
-            template: './src/test.html'
+            template: './src/test.html',
+            // 压缩html代码
+            minify: {
+                // 移除空格
+                collapseWhitespace: true,
+                // 移除注释
+                removeComments: true
+            }
         }),
         new MiniCssExtractPlugin({
             // 对输出的css文件进行重命名
@@ -223,7 +230,8 @@ module.exports = {
         new OptimizeCssAssetsWebpackPlugin()
     ],
     // 模式 development or production
-    mode: 'development',
+    // production会压缩js文件
+    mode: 'production',
     // 开发服务器devServer：用来自动化（自动编译，自动打开浏览器，自动刷新浏览器）
     // 特点：只会在内存中编译打包，不会有任何输出
     // 启动devServer指令为：npx webpack-dev-server

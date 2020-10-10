@@ -91,9 +91,6 @@ module.exports = {
                     // 'style-loader',
                     MiniCssExtractPlugin.loader,
                     'css-loader',
-                    // 将less文件编译成css文件
-                    // 需要下载less-loader和less
-                    'less-loader',
                     // 'postcss-loader'
                     {
                         loader: 'postcss-loader',
@@ -109,7 +106,10 @@ module.exports = {
                                 ],
                             },
                         },
-                    }
+                    },
+                    // 将less文件编译成css文件
+                    // 需要下载less-loader和less
+                    'less-loader'
                 ]
             },
             {

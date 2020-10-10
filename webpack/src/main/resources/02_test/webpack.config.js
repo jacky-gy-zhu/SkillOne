@@ -23,7 +23,7 @@ module.exports = {
     // 输出
     output: {
         // 输出文件名
-        filename: 'js/built.js',
+        filename: 'built.js',
         // 输出路径
         // __dirname是nodejs的变量，代表当前文件目录的绝对路径
         path: resolve(__dirname, 'build')
@@ -88,8 +88,8 @@ module.exports = {
                 test: /\.less$/,
                 // 要使用多个loader处理，用use
                 use: [
-                    MiniCssExtractPlugin.loader,
                     // 'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     // 将less文件编译成css文件
                     // 需要下载less-loader和less
@@ -145,6 +145,40 @@ module.exports = {
                     name: '[hash:10].[ext]',
                     outputPath: 'media'
                 }
+            },
+            /*
+                语法检查：eslint-loader eslint
+                注意：只检查自己写的源代码，第三方的库是不用检查的
+                设置检查规则：
+                package.json中eslintConfig中设置
+                "eslintConfig": {
+                    "extends": "airbnb-base"
+                }
+                airbnb -> eslint-config-airbnb-base eslint-plugin-import eslint
+                如果有些代码强制不需要检查，比如
+                // eslint-disable-next-line
+                console.log(xxx)
+             */
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'eslint-loader',
+                options: {
+                    // 自动修复
+                    fix: true
+                }
+            },
+            /*
+                js兼容性处理：babel-loader @babel/preset-env @babel/core
+             */
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                options: {
+                    // 预设：指示babel做怎么样的兼容性处理
+                    presets: ['@babel/preset-env']
+                }
             }
         ]
     },
@@ -161,7 +195,7 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             // 对输出的css文件进行重命名
-            filename: 'css/main.css'
+            filename: 'main.css'
         }),
         // 压缩css
         new OptimizeCssAssetsWebpackPlugin()

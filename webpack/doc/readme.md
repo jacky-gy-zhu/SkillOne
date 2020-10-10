@@ -16,6 +16,8 @@
     npm install mini-css-extract-plugin -D // 将css文件从js文件中单独提取出来
     npm install postcss postcss-loader postcss-preset-env -D // css兼容性处理
     npm install optimize-css-assets-webpack-plugin -D // 压缩css
+    npm install eslint-config-airbnb-base eslint-plugin-import eslint-loader eslint -D // js语法检查，自动修正
+    npm install babel-loader @babel/preset-env @babel/core -D // js兼容性处理（ES6语法IE不支持）
 
 ## 运行指令
     开发环境：webpack ./src/index.js -o ./build/built.js --mode=development

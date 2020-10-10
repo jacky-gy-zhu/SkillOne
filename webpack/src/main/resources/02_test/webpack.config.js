@@ -170,6 +170,10 @@ module.exports = {
             },
             /*
                 js兼容性处理：babel-loader @babel/preset-env @babel/core
+                1. 基本js兼容性处理 --> @babel/preset-env
+                问题：只能转换基本语法，如promise不能转换
+                2. 全部js兼容性处理 --> @babel/polyfill （太大，不推荐）
+                3. 需要做兼容性处理的才做：按需加载 --> core-js
              */
             {
                 test: /\.js$/,
@@ -177,7 +181,25 @@ module.exports = {
                 loader: 'babel-loader',
                 options: {
                     // 预设：指示babel做怎么样的兼容性处理
-                    presets: ['@babel/preset-env']
+                    presets: [
+                        [
+                            "@babel/preset-env", // 基本语法的js处理，如箭头函数
+                            {
+                                useBuiltIns: "usage", // 按需加载处理
+                                corejs: {
+                                    "version": 3
+                                },
+                                // 指定兼容性做到哪个版本浏览器
+                                targets: {
+                                    "chrome": "60",
+                                    "firefox": "50",
+                                    "ie": "9",
+                                    "safari": "10",
+                                    "edge": "17"
+                                }
+                            }
+                        ]
+                    ]
                 }
             }
         ]
@@ -201,7 +223,7 @@ module.exports = {
         new OptimizeCssAssetsWebpackPlugin()
     ],
     // 模式 development or production
-    mode: 'production',
+    mode: 'development',
     // 开发服务器devServer：用来自动化（自动编译，自动打开浏览器，自动刷新浏览器）
     // 特点：只会在内存中编译打包，不会有任何输出
     // 启动devServer指令为：npx webpack-dev-server

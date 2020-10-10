@@ -9,6 +9,12 @@
 const {resolve} = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+
+// 设置nodejs环境变量
+// process.env.NODE_ENV = "development"
+
 module.exports = {
     // webpack配置
 
@@ -34,20 +40,76 @@ module.exports = {
                 use: [
                     // use数组中loader执行顺序：从右到左，从下到上 依次执行
                     // 创建style标签，将js中的css样式资源插入进去，添加到head中生效
-                    'style-loader',
+                    // 'style-loader',
+                    // 这个loader取代style-loader，作用：提取js中的css成单独文件
+                    MiniCssExtractPlugin.loader,
                     // 将css文件变成commonjs模块加载到js中，里面内容是样式字符串
-                    'css-loader'
+                    'css-loader',
+                    /*
+                        css兼容性处理：postcss --> postcss-loader postcss-preset-env
+
+                        帮postcss找到package.json中browserslist里面的配置，通过配置加载指定的css兼容性样式
+
+                        "browserslist": {
+                            // 开发环境 --> 设置node环境变量：process.env.NODE_ENV = development
+                            "development": [
+                              "last 1 chrome version",
+                              "last 1 firefox version",
+                              "last 1 safari version"
+                            ],
+                            "production": [
+                              ">0.2%",
+                              "not dead",
+                              "not op_mini all"
+                            ]
+                         }
+                     */
+                    // 使用loader的默认配置
+                    // 'postcss-loader'
+                    // 修改loader的配置
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    [
+                                        'postcss-preset-env',
+                                        {
+                                            // Options
+                                        },
+                                    ],
+                                ],
+                            },
+                        },
+                    }
                 ]
             },
             {
                 test: /\.less$/,
                 // 要使用多个loader处理，用use
                 use: [
-                    'style-loader',
+                    MiniCssExtractPlugin.loader,
+                    // 'style-loader',
                     'css-loader',
                     // 将less文件编译成css文件
                     // 需要下载less-loader和less
-                    'less-loader'
+                    'less-loader',
+                    // 'postcss-loader'
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    [
+                                        'postcss-preset-env',
+                                        {
+                                            // Options
+                                        },
+                                    ],
+                                ],
+                            },
+                        },
+                    }
                 ]
             },
             {
@@ -94,13 +156,18 @@ module.exports = {
         // 功能：默认会创建一个空的html，自动引入打包输出的所有资源（js/css）
         // 需求：需要有结构的html文件
         new HtmlWebpackPlugin({
-                // 复制 一个html文件，并自动引入打包输出的所有资源（js/css）
-                template: './src/test.html'
-            }
-        )
+            // 复制 一个html文件，并自动引入打包输出的所有资源（js/css）
+            template: './src/test.html'
+        }),
+        new MiniCssExtractPlugin({
+            // 对输出的css文件进行重命名
+            filename: 'css/main.css'
+        }),
+        // 压缩css
+        new OptimizeCssAssetsWebpackPlugin()
     ],
     // 模式 development or production
-    mode: 'development',
+    mode: 'production',
     // 开发服务器devServer：用来自动化（自动编译，自动打开浏览器，自动刷新浏览器）
     // 特点：只会在内存中编译打包，不会有任何输出
     // 启动devServer指令为：npx webpack-dev-server

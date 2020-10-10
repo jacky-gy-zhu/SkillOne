@@ -13,6 +13,9 @@
     npm install webpack webpack-cli -D
     npm install css-loader style-loader less less-loader file-loader url-loader html-loader html-webpack-plugin -D
     npm install webpack-dev-server -D
+    npm install mini-css-extract-plugin -D // 将css文件从js文件中单独提取出来
+    npm install postcss postcss-loader postcss-preset-env -D // css兼容性处理
+    npm install optimize-css-assets-webpack-plugin -D // 压缩css
 
 ## 运行指令
     开发环境：webpack ./src/index.js -o ./build/built.js --mode=development

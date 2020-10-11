@@ -238,11 +238,26 @@ module.exports = {
     }*/
     /*
         source-map：一种提供源代码到构建后代码映射技术（如果构建后代码出错了，通过映射可以追踪到源代码错误）
+            错误代码准确信息 和 源代码的错误位置
         inline-source-map：内联（只生成一个内联source-map）
+            错误代码准确信息 和 源代码的错误位置
         hidden-source-map：外部
+            不能追踪源代码的错误位置，只能提示到构建后代码到错误位置
         eval-source-map：内联（每一个文件都生成对应的source-map）
+            错误代码准确信息 和 源代码的错误位置
+        nosources-source-map：外部
+            错误代码准确信息 但没有任何源代码信息
         cheap-source-map：外部
+            错误代码准确信息 和 源代码的错误位置 但只能精确到行
         cheap-module-source-map：外部
+            错误代码准确信息 和 源代码的错误位置 但只能精确到行 module会将loader的source map加入
+
+        速度      eval-cheap-source-map -> eval-source-map
+        调试友好   source-map -> cheap-module-source-map -> cheap-source-map
+
+        开发推荐        eval-source-map / eval-cheap-module-source-map
+        生产推荐        nosources-source-map [全部隐藏] / hidden-source-map [只隐藏源代码]
+                      source-map / cheap-module-source-map
      */
     devtool: 'source-map'
 }

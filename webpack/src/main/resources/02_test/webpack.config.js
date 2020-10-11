@@ -81,56 +81,7 @@ module.exports = {
     module: {
         rules: [
             //详细loader的配置
-            {
-                // 配置哪些文件
-                test: /\.css$/,
-                // 使用哪些loader进行处理
-                use: [...commonCssLoader]
-            },
-            {
-                test: /\.less$/,
-                // 要使用多个loader处理，用use
-                use: [
-                    ...commonCssLoader,
-                    // 将less文件编译成css文件
-                    // 需要下载less-loader和less
-                    'less-loader'
-                ]
-            },
-            {
-                // 问题：默认处理不了html中img图片
-                // 处理图片资源
-                test: /\.(jpg|png|gif)$/,
-                // 使用一个loader
-                loader: 'url-loader',
-                options: {
-                    // 图片大小小于8kb，就会被base64处理
-                    // 优点：减少请求数量（减轻服务器压力）
-                    // 缺点：图片体积会增大（文件请求速度更慢）
-                    limit: 8 * 1024,
-                    // esModule: false,
-                    // 给图片进行重命名
-                    // [hash:10]取图片的hash的前10位
-                    // [ext]取文件原来扩展名
-                    name: '[hash:10].[ext]',
-                    outputPath: 'imgs'
-                }
-            },
-            {
-                test: /\.html$/,
-                // 处理html文件的img图片（负责引入img，从而能被url-loader进行处理）
-                loader: 'html-loader'
-            },
-            // 打包其他资源（除了html/js/css资源以为的资源）
-            {
-                // 排除css/js/html资源
-                exclude: /\.(css|js|html|less|png|jpg|gif|json)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[hash:10].[ext]',
-                    outputPath: 'media'
-                }
-            },
+
             /*
                 正常来讲，一个文件只能被一个loader处理
                 当一个文件要被多个loader处理，那么一定要指定loader执行的先后顺序：
@@ -160,39 +111,95 @@ module.exports = {
                     fix: true
                 }
             },
-            /*
-                js兼容性处理：babel-loader @babel/preset-env @babel/core
-                1. 基本js兼容性处理 --> @babel/preset-env
-                问题：只能转换基本语法，如promise不能转换
-                2. 全部js兼容性处理 --> @babel/polyfill （太大，不推荐）
-                3. 需要做兼容性处理的才做：按需加载 --> core-js
-             */
             {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-                options: {
-                    // 预设：指示babel做怎么样的兼容性处理
-                    presets: [
-                        [
-                            "@babel/preset-env", // 基本语法的js处理，如箭头函数
-                            {
-                                useBuiltIns: "usage", // 按需加载处理
-                                corejs: {
-                                    "version": 3
-                                },
-                                // 指定兼容性做到哪个版本浏览器
-                                targets: {
-                                    "chrome": "60",
-                                    "firefox": "50",
-                                    "ie": "9",
-                                    "safari": "10",
-                                    "edge": "17"
-                                }
-                            }
+                // 以下loader只会匹配一个
+                // 注意：不能有两个配置处理同一种类型文件
+                oneOf: [
+                    {
+                        // 配置哪些文件
+                        test: /\.css$/,
+                        // 使用哪些loader进行处理
+                        use: [...commonCssLoader]
+                    },
+                    {
+                        test: /\.less$/,
+                        // 要使用多个loader处理，用use
+                        use: [
+                            ...commonCssLoader,
+                            // 将less文件编译成css文件
+                            // 需要下载less-loader和less
+                            'less-loader'
                         ]
-                    ]
-                }
+                    },
+                    {
+                        test: /\.html$/,
+                        // 处理html文件的img图片（负责引入img，从而能被url-loader进行处理）
+                        loader: 'html-loader'
+                    },
+                    /*
+                        js兼容性处理：babel-loader @babel/preset-env @babel/core
+                        1. 基本js兼容性处理 --> @babel/preset-env
+                        问题：只能转换基本语法，如promise不能转换
+                        2. 全部js兼容性处理 --> @babel/polyfill （太大，不推荐）
+                        3. 需要做兼容性处理的才做：按需加载 --> core-js
+                     */
+                    {
+                        test: /\.js$/,
+                        exclude: /node_modules/,
+                        loader: 'babel-loader',
+                        options: {
+                            // 预设：指示babel做怎么样的兼容性处理
+                            presets: [
+                                [
+                                    "@babel/preset-env", // 基本语法的js处理，如箭头函数
+                                    {
+                                        useBuiltIns: "usage", // 按需加载处理
+                                        corejs: {
+                                            "version": 3
+                                        },
+                                        // 指定兼容性做到哪个版本浏览器
+                                        targets: {
+                                            "chrome": "60",
+                                            "firefox": "50",
+                                            "ie": "9",
+                                            "safari": "10",
+                                            "edge": "17"
+                                        }
+                                    }
+                                ]
+                            ]
+                        }
+                    },
+                    {
+                        // 问题：默认处理不了html中img图片
+                        // 处理图片资源
+                        test: /\.(jpg|png|gif)$/,
+                        // 使用一个loader
+                        loader: 'url-loader',
+                        options: {
+                            // 图片大小小于8kb，就会被base64处理
+                            // 优点：减少请求数量（减轻服务器压力）
+                            // 缺点：图片体积会增大（文件请求速度更慢）
+                            limit: 8 * 1024,
+                            // esModule: false,
+                            // 给图片进行重命名
+                            // [hash:10]取图片的hash的前10位
+                            // [ext]取文件原来扩展名
+                            name: '[hash:10].[ext]',
+                            outputPath: 'imgs'
+                        }
+                    },
+                    // 打包其他资源（除了html/js/css资源以为的资源）
+                    {
+                        // 排除css/js/html资源
+                        exclude: /\.(css|js|html|less|png|jpg|gif|json)$/,
+                        loader: 'file-loader',
+                        options: {
+                            name: '[hash:10].[ext]',
+                            outputPath: 'media'
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -259,5 +266,5 @@ module.exports = {
         生产推荐        nosources-source-map [全部隐藏] / hidden-source-map [只隐藏源代码]
                       source-map / cheap-module-source-map
      */
-    devtool: 'source-map'
+    devtool: 'cheap-module-source-map'
 }

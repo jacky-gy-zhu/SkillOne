@@ -227,7 +227,7 @@ module.exports = {
     // 开发服务器devServer：用来自动化（自动编译，自动打开浏览器，自动刷新浏览器）
     // 特点：只会在内存中编译打包，不会有任何输出
     // 启动devServer指令为：npx webpack-dev-server
-    devServer: {
+    /*devServer: {
         contentBase: resolve(__dirname, 'build'),
         // 启动gzip压缩
         compress: true,
@@ -235,5 +235,14 @@ module.exports = {
         port: 3000,
         // 自动打开浏览器
         open: true
-    }
+    }*/
+    /*
+        source-map：一种提供源代码到构建后代码映射技术（如果构建后代码出错了，通过映射可以追踪到源代码错误）
+        inline-source-map：内联（只生成一个内联source-map）
+        hidden-source-map：外部
+        eval-source-map：内联（每一个文件都生成对应的source-map）
+        cheap-source-map：外部
+        cheap-module-source-map：外部
+     */
+    devtool: 'source-map'
 }

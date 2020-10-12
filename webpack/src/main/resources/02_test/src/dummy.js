@@ -2,7 +2,6 @@ import data from './data/data.json';
 import './style.css';
 import './css.less';
 import './font/iconfont.css';
-
 import add from './dummy2';
 
 const subtract = function subtract(x, y) {

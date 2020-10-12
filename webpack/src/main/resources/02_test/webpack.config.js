@@ -99,7 +99,7 @@ module.exports = {
     entry: {
         // 多入口：有一个入口，最终输出就一个bundle
         dummy: './src/dummy.js',
-        // index: './src/dummy2.js',
+        // index: './src/index.js',
     },
     // 输出
     output: {
@@ -177,7 +177,7 @@ module.exports = {
                         3. 需要做兼容性处理的才做：按需加载 --> core-js
                      */
                     {
-                        test: /\.js$/,
+                        test: /\.(js|jsx)$/,
                         exclude: /node_modules/,
                         use: [
                             /*
@@ -327,5 +327,16 @@ module.exports = {
         splitChunks: {
             chunks: 'all'
         }
+    },
+    externals: {
+        // 绝对jQuery被打包进来
+        jquery: 'jQuery',
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        redux: 'Redux',
+        'react-redux': 'React-redux',
+        'prop-types': 'Prop-types',
+        babel: 'Babel',
+        axios: 'Axios'
     }
 }

@@ -99,7 +99,7 @@ module.exports = {
     entry: {
         // 多入口：有一个入口，最终输出就一个bundle
         dummy: './src/dummy.js',
-        index: './src/dummy2.js',
+        // index: './src/dummy2.js',
     },
     // 输出
     output: {
@@ -302,5 +302,14 @@ module.exports = {
         生产推荐        nosources-source-map [全部隐藏] / hidden-source-map [只隐藏源代码]
                       source-map / cheap-module-source-map
      */
-    devtool: 'cheap-module-source-map'
+    devtool: 'cheap-module-source-map',
+    /*
+        1. 可以将node_modules中代码单独打包一个chunk最终输出
+        2. 自动分析多入口chunk中，有没有公共的文件。如果有会打包成单独的一个chunk
+     */
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    }
 }

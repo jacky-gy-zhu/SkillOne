@@ -95,11 +95,16 @@ module.exports = {
     // webpack配置
 
     // 入口起点
-    entry: './src/dummy.js',
+    // entry: './src/dummy.js',
+    entry: {
+        // 多入口：有一个入口，最终输出就一个bundle
+        dummy: './src/dummy.js',
+        index: './src/dummy2.js',
+    },
     // 输出
     output: {
-        // 输出文件名
-        filename: 'built.[contenthash:10].js',
+        // 输出文件名, [name]：取文件名
+        filename: '[name].[contenthash:10].js',
         // 输出路径
         // __dirname是nodejs的变量，代表当前文件目录的绝对路径
         path: resolve(__dirname, 'build')

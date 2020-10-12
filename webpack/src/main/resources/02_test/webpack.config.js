@@ -179,32 +179,48 @@ module.exports = {
                     {
                         test: /\.js$/,
                         exclude: /node_modules/,
-                        loader: 'babel-loader',
-                        options: {
-                            // 预设：指示babel做怎么样的兼容性处理
-                            presets: [
-                                [
-                                    "@babel/preset-env", // 基本语法的js处理，如箭头函数
-                                    {
-                                        useBuiltIns: "usage", // 按需加载处理
-                                        corejs: {
-                                            "version": 3
-                                        },
-                                        // 指定兼容性做到哪个版本浏览器
-                                        targets: {
-                                            "chrome": "60",
-                                            "firefox": "50",
-                                            "ie": "9",
-                                            "safari": "10",
-                                            "edge": "17"
-                                        }
-                                    }
-                                ]
-                            ],
-                            // 开启babel缓存
-                            // 第二次构建时，会读取之前的缓存
-                            cacheDirectory: true
-                        }
+                        use: [
+                            /*
+                                开启多进程打包.
+                                进程启动大概为600ms，进程通信也有开销。
+                                只有工作消耗时间比较长，才需要多进程打包
+                             */
+                            // 'thread-loader',
+                            {
+                                loader: 'thread-loader',
+                                options: {
+                                    workers: 8 // 进程8个
+                                }
+                            },
+                            {
+                                loader: 'babel-loader',
+                                options: {
+                                    // 预设：指示babel做怎么样的兼容性处理
+                                    presets: [
+                                        [
+                                            "@babel/preset-env", // 基本语法的js处理，如箭头函数
+                                            {
+                                                useBuiltIns: "usage", // 按需加载处理
+                                                corejs: {
+                                                    "version": 3
+                                                },
+                                                // 指定兼容性做到哪个版本浏览器
+                                                targets: {
+                                                    "chrome": "60",
+                                                    "firefox": "50",
+                                                    "ie": "9",
+                                                    "safari": "10",
+                                                    "edge": "17"
+                                                }
+                                            }
+                                        ]
+                                    ],
+                                    // 开启babel缓存
+                                    // 第二次构建时，会读取之前的缓存
+                                    cacheDirectory: true
+                                }
+                            }
+                        ]
                     },
                     {
                         // 问题：默认处理不了html中img图片

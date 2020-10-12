@@ -18,6 +18,7 @@
     npm install optimize-css-assets-webpack-plugin -D // 压缩css
     npm install eslint-config-airbnb-base eslint-plugin-import eslint-loader eslint -D // js语法检查，自动修正
     npm install babel-loader @babel/preset-env @babel/core @babel/polyfill -D // js兼容性处理（ES6语法IE不支持）
+    npm install thread-loader -D // 多进程打包
 
 ## 运行指令
     开发环境：webpack ./src/index.js -o ./build/built.js --mode=development
@@ -43,3 +44,8 @@
 ### 生产环境性能优化
 > 优化打包构建速度
 > 优化代码运行的性能
+
+### 懒加载以及代码分割
+    import（/* webpackChunkName: 'test', webpackPrefetch: true */'./test').then(mul => {
+        ....
+    });

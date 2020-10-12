@@ -63,6 +63,22 @@ const commonCssLoader = [
     }
 ]
 
+/*
+    缓存：
+        babel缓存
+            cacheDirectory: true
+            --> 让第二次打包构建速度更快
+        文件资源缓存
+            hash：每次webpack构建时会生成一个唯一的hash值。
+                问题：因为js和css同时使用一个hash值
+                    如果重新打包，会导致所有缓存失效。（可能我却只改动一个文件）
+            chunkhash：根据chunk生成的hash值。如果打包来源于同一个chunk，那么hash值就一样
+                问题：js和css的hash值还是一样的
+                    因为css是在js中被引入的，所以同属于一个chunk
+            contenthash：根据文件的内容生成hash值。不同文件hash值一定不一样
+            --> 让代码上线运行缓存更好使用
+ */
+
 module.exports = {
     // webpack配置
 
@@ -71,7 +87,7 @@ module.exports = {
     // 输出
     output: {
         // 输出文件名
-        filename: 'built.js',
+        filename: 'built.[contenthash:10].js',
         // 输出路径
         // __dirname是nodejs的变量，代表当前文件目录的绝对路径
         path: resolve(__dirname, 'build')
@@ -226,7 +242,7 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             // 对输出的css文件进行重命名
-            filename: 'main.css'
+            filename: 'main.[contenthash:10].css'
         }),
         // 压缩css
         new OptimizeCssAssetsWebpackPlugin()

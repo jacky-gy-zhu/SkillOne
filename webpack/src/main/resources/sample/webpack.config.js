@@ -8,9 +8,10 @@
 // resolve用来拼接绝对路径的方法
 const {resolve} = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
+const webpack = require('webpack')
+const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
 
 // 设置nodejs环境变量：决定使用browserslist的哪个环境
 process.env.NODE_ENV = "production"
@@ -278,7 +279,15 @@ module.exports = {
             filename: 'main.[contenthash:10].css'
         }),
         // 压缩css
-        new OptimizeCssAssetsWebpackPlugin()
+        new OptimizeCssAssetsWebpackPlugin(),
+        // 告诉webpack哪些库不参与打包，同时使用时的名称也得改变
+        new webpack.DllReferencePlugin({
+            manifest: resolve(__dirname, 'dll/manifest.json')
+        }),
+        // 将某个文件打包输出去，并在html中自动引入该文件资源
+        new AddAssetHtmlWebpackPlugin({
+            filepath: resolve(__dirname, 'dll/jquery.js')
+        })
     ],
     // 模式 development or production
     // production会压缩js文件
@@ -328,7 +337,7 @@ module.exports = {
             chunks: 'all'
         }
     },
-    externals: {
+    /*externals: {
         // 绝对jQuery被打包进来
         jquery: 'jQuery',
         react: 'React',
@@ -338,5 +347,5 @@ module.exports = {
         'prop-types': 'Prop-types',
         babel: 'Babel',
         axios: 'Axios'
-    }
+    }*/
 }

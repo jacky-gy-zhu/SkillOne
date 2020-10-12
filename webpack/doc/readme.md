@@ -19,7 +19,7 @@
     npm install eslint-config-airbnb-base eslint-plugin-import eslint-loader eslint -D // js语法检查，自动修正
     npm install babel-loader @babel/preset-env @babel/core @babel/polyfill -D // js兼容性处理（ES6语法IE不支持）
     npm install thread-loader -D // 多进程打包
-    npm install add-asset-html-webpack-plugin -D // Dll
+    npm install add-asset-html-webpack-plugin -D // Dll,将某个文件打包输出去，并在html中自动引入该文件资源
 
 ## 运行指令
     开发环境：webpack ./src/index.js -o ./build/built.js --mode=development

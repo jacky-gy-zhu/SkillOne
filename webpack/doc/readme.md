@@ -52,3 +52,38 @@
     });
 
 ### DLL 动态连接库
+    [webpack.config.js]
+    new webpack.DllReferencePlugin({
+        manifest: resolve(__dirname, 'dll/manifest.json')
+    }),
+    // 将某个文件打包输出去，并在html中自动引入该文件资源
+    new AddAssetHtmlWebpackPlugin([
+        { filepath: resolve(__dirname, 'dll/jquery.js') },
+        { filepath: resolve(__dirname, 'dll/react.js') }
+    ])
+    
+    [webpack.dll.js]
+    const {resolve} = require('path')
+    const webpack = require('webpack')
+    module.exports = {
+        entry: {
+            // 最终打包生成的[name] --> jquery
+            // ['jquery'] --> 要打包的库是jquery
+            jquery: ['jquery'],
+            // 将多个第三方包统一打包成一个包
+            react: ['react', 'react-dom', 'react-router-dom']
+        },
+        output: {
+            filename: '[name].js',
+            path: resolve(__dirname, 'dll'),
+            library: '[name]_[hash]', // 打包的库里面向外暴露出去的内容叫什么名字
+        },
+        plugins: [
+            // 打包生成一个manifest.json --> 提供和jquery映射
+            new webpack.DllPlugin({
+                name: '[name]_[hash]', // 映射库的暴露的内容名称
+                path: resolve(__dirname, 'dll/manifest.json') // 输出文件路径
+            })
+        ],
+        mode: 'production'
+    }

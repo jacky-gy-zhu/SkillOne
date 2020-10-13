@@ -12,6 +12,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const webpack = require('webpack')
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
+const PUBLIC_PATH = '/skillone/webpack/sample/build/'
 
 // 设置nodejs环境变量：决定使用browserslist的哪个环境
 process.env.NODE_ENV = "production"
@@ -110,7 +111,7 @@ module.exports = {
         // __dirname是nodejs的变量，代表当前文件目录的绝对路径
         path: resolve(__dirname, 'build'),
         // 所有资源引入公共路径前缀： 'imgs/a.jpg' --> '/imgs/a.jpg' 相当于contextPath
-        publicPath: '/skillone/webpack/sample/build/'
+        publicPath: PUBLIC_PATH
     },
     // loader的配置
     // 不同文件必须配置不同loader处理
@@ -288,8 +289,16 @@ module.exports = {
         }),
         // 将某个文件打包输出去，并在html中自动引入该文件资源
         new AddAssetHtmlWebpackPlugin([
-            { filepath: resolve(__dirname, 'dll/jquery.js') },
-            { filepath: resolve(__dirname, 'dll/react.js') }
+            {
+                filepath: resolve(__dirname, 'dll/jquery.js'),
+                outputPath: 'plugin',
+                publicPath: PUBLIC_PATH + 'plugin'
+            },
+            {
+                filepath: resolve(__dirname, 'dll/react.js'),
+                outputPath: 'plugin',
+                publicPath: PUBLIC_PATH + 'plugin'
+            }
         ])
     ],
     // 模式 development or production

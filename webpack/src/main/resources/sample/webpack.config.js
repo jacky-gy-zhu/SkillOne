@@ -363,4 +363,18 @@ module.exports = {
         babel: 'Babel',
         axios: 'Axios'
     }*/
+    // 解析模块的规则
+    resolve: {
+        // 配置解析模块路径别名：优点简写路径，缺点路径没有提示
+        alias: {
+            $css: resolve(__dirname, 'src/css')
+        },
+        // 配置路径的后缀名，可以省略写后缀文件名
+        extensions: ['.js', '.json', '.jsx'],
+        // 告诉webpack解析模块是去哪个目录找
+        modules: [
+            resolve(__dirname, '../../../node_modules'),
+            'node_modules'
+        ]
+    }
 }

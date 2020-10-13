@@ -285,9 +285,10 @@ module.exports = {
             manifest: resolve(__dirname, 'dll/manifest.json')
         }),
         // 将某个文件打包输出去，并在html中自动引入该文件资源
-        new AddAssetHtmlWebpackPlugin({
-            filepath: resolve(__dirname, 'dll/jquery.js')
-        })
+        new AddAssetHtmlWebpackPlugin([
+            { filepath: resolve(__dirname, 'dll/jquery.js') },
+            { filepath: resolve(__dirname, 'dll/react.js') }
+        ])
     ],
     // 模式 development or production
     // production会压缩js文件

@@ -105,10 +105,12 @@ module.exports = {
     // 输出
     output: {
         // 输出文件名, [name]：取文件名
-        filename: '[name].[contenthash:10].js',
+        filename: 'js/[name].[contenthash:10].js',
         // 输出路径
         // __dirname是nodejs的变量，代表当前文件目录的绝对路径
-        path: resolve(__dirname, 'build')
+        path: resolve(__dirname, 'build'),
+        // 所有资源引入公共路径前缀： 'imgs/a.jpg' --> '/imgs/a.jpg' 相当于contextPath
+        publicPath: '/skillone/webpack/sample/build/'
     },
     // loader的配置
     // 不同文件必须配置不同loader处理
@@ -276,7 +278,7 @@ module.exports = {
         }),
         new MiniCssExtractPlugin({
             // 对输出的css文件进行重命名
-            filename: 'main.[contenthash:10].css'
+            filename: 'css/main.[contenthash:10].css'
         }),
         // 压缩css
         new OptimizeCssAssetsWebpackPlugin(),

@@ -139,7 +139,10 @@ module.exports = {
              */
             {
                 test: /\.js$/,
+                // 排除所有node_modules下的文件
                 exclude: /node_modules/,
+                // 只检查src下的js文件
+                // include: resolve(__dirname, 'src'),
                 // 优先执行
                 enforce: 'pre',
                 loader: 'eslint-loader',

@@ -16,6 +16,7 @@
         <module>docker</module>
         <module>react</module>
         <module>webpack</module>
+        <module>nginx</module>
     </modules>
 
 

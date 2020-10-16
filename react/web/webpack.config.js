@@ -56,6 +56,23 @@ module.exports = {
                         loader: 'html-loader'
                     },
                     {
+                        test: /\.(jpg|png|gif)$/,
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8 * 1024,
+                            name: '[hash:10].[ext]',
+                            outputPath: 'imgs'
+                        }
+                    },
+                    {
+                        exclude: /\.(css|js|html|less|png|jpg|jpeg|gif|json)$/,
+                        loader: 'file-loader',
+                        options: {
+                            name: '[hash:10].[ext]',
+                            outputPath: 'media'
+                        }
+                    },
+                    {
                         test: /\.(js|jsx)$/,
                         exclude: /node_modules/,
                         use: [
@@ -91,10 +108,30 @@ module.exports = {
                 collapseWhitespace: true,
                 removeComments: true
             }
-        })
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'css/main.[contenthash:10].css'
+        }),
+        new OptimizeCssAssetsWebpackPlugin(),
+        new webpack.DllReferencePlugin({
+            manifest: resolve(__dirname, 'dll/manifest.json')
+        }),
+        new AddAssetHtmlWebpackPlugin([
+            {
+                filepath: resolve(__dirname, 'dll/react.js'),
+                outputPath: 'plugin',
+                publicPath: PUBLIC_PATH + 'plugin'
+            }
+        ])
     ],
     mode: 'production',
     resolve: {
         extensions: ['.js', '.jsx']
+    },
+    devtool: 'cheap-module-source-map',
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
     }
 }

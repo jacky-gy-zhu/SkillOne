@@ -55,4 +55,17 @@
         2） ~：用于表示uri包含正则表达式，并且区分大小写                       
         3） ~*：用于表示uri包含正则表达式，并且不区分大小写    
         4） ^~：用于不含正则表达式的uri前，要求nginx服务器找到标识uri和请求字符串匹配度最高的location后，立即使用此location处理。
-        注意：如果uri包含正则表达式，则必须要有~或者~*标识。                           
+        注意：如果uri包含正则表达式，则必须要有~或者~*标识。         
+
+## 负载均衡
+    upstream myserver {
+        server  47.90.105.193:8080;
+        server  47.90.105.193:8081;
+    }
+    server {
+        listen       80;
+        server_name  47.90.105.193;
+        location / {
+            proxy_pass  http://myserver;
+        }
+    }

@@ -55,42 +55,41 @@ module.exports = {
                         test: /\.html$/,
                         loader: 'html-loader'
                     },
+                    // {
+                    //     test: /\.(js|jsx)$/,
+                    //     exclude: /node_modules/,
+                    //     loader: 'babel-loader',
+                    //     options: {
+                    //         "presets": [
+                    //             "@babel/preset-env",
+                    //             "@babel/preset-react",
+                    //             {
+                    //                 "plugins": ['@babel/plugin-proposal-class-properties']
+                    //             }
+                    //         ]
+                    //     }
+                    // },
                     {
                         test: /\.(js|jsx)$/,
                         exclude: /node_modules/,
-                        loader: 'babel-loader',
-                        options: {
-                            "presets": [
-                                "@babel/preset-env",
-                                "@babel/preset-react",
-                                {
-                                    "plugins": ['@babel/plugin-proposal-class-properties']
-                                }
-                            ]
-                        }
-                    },
-                    {
-                        test: /\.css$/,
-                        exclude: /node_modules/,
                         use: [
-                            { loader: 'style-loader' },
                             {
-                                loader: 'css-loader',
+                                loader: 'thread-loader',
                                 options: {
-                                    modules: {
-                                        localIdentName: "[name]__[local]___[hash:base64:5]",
-                                    },
-                                    sourceMap: true
+                                    workers: 8 // 进程8个
                                 }
                             },
                             {
-                                loader: 'postcss-loader',
+                                loader: 'babel-loader',
                                 options: {
-                                    postcssOptions: {
-                                        plugins: [
-                                            [ 'autoprefixer', {}, ],
-                                        ],
-                                    },
+                                    presets: [
+                                        "@babel/preset-env",
+                                        "@babel/preset-react",
+                                        {
+                                            "plugins": ['@babel/plugin-proposal-class-properties']
+                                        }
+                                    ],
+                                    cacheDirectory: true
                                 }
                             }
                         ]

@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const webpack = require('webpack')
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
-const PUBLIC_PATH = '/'
+const PUBLIC_PATH = '/skillone/react/web/build/'
 
 process.env.NODE_ENV = "production"
 
@@ -65,7 +65,7 @@ module.exports = {
                         }
                     },
                     {
-                        exclude: /\.(css|js|html|less|png|jpg|jpeg|gif|json)$/,
+                        exclude: /\.(css|js|jsx|html|less|png|jpg|jpeg|gif)$/,
                         loader: 'file-loader',
                         options: {
                             name: '[hash:10].[ext]',

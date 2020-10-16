@@ -24,6 +24,7 @@ export default class App extends Component {
                             <MyNavLink className="list-group-item" to="/home">Home</MyNavLink>
                             <MyNavLink className="list-group-item" to="/about">About</MyNavLink>
                             <MyNavLink className="list-group-item" to="/comment">Comment</MyNavLink>
+                            <MyNavLink className="list-group-item" to="/profile">Profile</MyNavLink>
                             <MyNavLink className="list-group-item" to="/counter">Counter</MyNavLink>
                         </div>
                     </div>
@@ -36,7 +37,7 @@ export default class App extends Component {
                                     <Route path='/comment' component={CommentViewer}/>
                                     <Route path='/profile' component={Profile}/>
                                     <Route path='/counter' component={Counter}/>
-                                    <Redirect to="/profile"/>
+                                    <Redirect to="/about"/>
                                 </Switch>
                             </div>
                         </div>

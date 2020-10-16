@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 
-const Container = () => {
-    return <h1>Hello World!</h1>
+export default class Container extends Component {
+
+    static propTypes = {
+        comments: PropTypes.array.isRequired,
+        deleteComment: PropTypes.func.isRequired
+    }
+
+    render() {
+        return (
+            <div>Hello World!</div>
+        )
+    }
 }
-
-export default Container

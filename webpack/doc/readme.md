@@ -87,3 +87,15 @@
         ],
         mode: 'production'
     }
+
+## React 打包
+    npm install --save-dev webpack webpack-cli webpack-dev-server
+    npm install react react-dom react-router-dom redux react-redux redux-thunk axios antd prop-types
+    npm install --save-dev @babel/core babel-loader @babel/preset-env @babel/preset-react
+    npm install --save-dev css-loader style-loader postcss-loader postcss --save-dev
+    npm install --save-dev file-loader url-loader
+    npm install --save-dev autoprefixer
+    npm install --save-dev html-webpack-plugin
+    npm install --save-dev mini-css-extract-plugin
+    npm install --save-dev optimize-css-assets-webpack-plugin
+    npm install --save-dev add-asset-html-webpack-plugin

@@ -95,9 +95,11 @@
     npm install --save-dev css-loader style-loader postcss-loader postcss
     npm install --save-dev file-loader url-loader
     npm install --save-dev thread-loader
+    npm install --save-dev html-loader
     npm install --save-dev autoprefixer
     npm install --save-dev html-webpack-plugin
     npm install --save-dev mini-css-extract-plugin
     npm install --save-dev optimize-css-assets-webpack-plugin
     npm install --save-dev add-asset-html-webpack-plugin
     npm install --save-dev eslint-config-airbnb-base eslint-plugin-import eslint-loader eslint
+    npm install --save-dev postcss postcss-loader postcss-preset-env

@@ -29,7 +29,7 @@ export default class App extends Component {
                             <MyNavLink className="list-group-item" to="/counter">Counter</MyNavLink>
                         </div>
                     </div>
-                    <div className="col-xs-8">
+                    <div className="col-md-8">
                         <div className="panel">
                             <div className="panel-body">
                                 <Switch>

@@ -7,6 +7,7 @@ import Home from '../views/home'
 import About from '../views/about'
 import CommentViewer from '../views/comment-viewer'
 import Counter from "../containers/counter";
+import './style.less'
 
 export default class App extends Component {
 

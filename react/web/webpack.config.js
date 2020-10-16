@@ -118,6 +118,11 @@ module.exports = {
         }),
         new AddAssetHtmlWebpackPlugin([
             {
+                filepath: resolve(__dirname, 'dll/bootstrap.js'),
+                outputPath: 'plugin',
+                publicPath: PUBLIC_PATH + 'plugin'
+            },
+            {
                 filepath: resolve(__dirname, 'dll/react.js'),
                 outputPath: 'plugin',
                 publicPath: PUBLIC_PATH + 'plugin'

@@ -13,6 +13,7 @@ module.exports = {
         // 最终打包生成的[name] --> jquery
         // ['jquery'] --> 要打包的库是jquery
         // jquery: ['jquery'],
+        bootstrap: ['react-bootstrap', 'bootstrap'],
         // 将多个第三方包统一打包成一个包
         react: ['react', 'react-dom', 'react-router-dom', 'redux', 'react-redux', 'redux-thunk', 'axios', 'prop-types']
     },

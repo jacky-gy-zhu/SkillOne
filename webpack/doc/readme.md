@@ -92,7 +92,7 @@
     npm install --save-dev webpack webpack-cli webpack-dev-server
     npm install react react-dom react-router-dom redux react-redux redux-thunk axios prop-types
     npm install --save-dev @babel/core babel-loader @babel/preset-env @babel/preset-react
-    npm install --save-dev css-loader style-loader postcss-loader postcss
+    npm install --save-dev css-loader style-loader postcss-loader postcss less less-loader
     npm install --save-dev file-loader url-loader
     npm install --save-dev thread-loader
     npm install --save-dev html-loader
@@ -103,3 +103,4 @@
     npm install --save-dev add-asset-html-webpack-plugin
     npm install --save-dev eslint-config-airbnb-base eslint-plugin-import eslint-loader eslint
     npm install --save-dev postcss postcss-loader postcss-preset-env
+    npm install --save-dev react-bootstrap bootstrap

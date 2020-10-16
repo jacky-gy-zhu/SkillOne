@@ -34,4 +34,6 @@ build/
 
 ### Nodejs ###
 node_modules
+build
 /webpack/src/main/resources/sample/build/
+/react/src/main/resources/web/build/

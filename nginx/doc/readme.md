@@ -46,4 +46,13 @@
             root   html;
             proxy_pass  http://127.0.0.1:8080;
             index  index.html index.htm;
-        }                 
+        }            
+    2. location配置
+        location [ = | ~ | ~* | ^~ ] uri {
+            ...
+        }    
+        1） =：用于不含正则表达式的uri前，要求严格匹配
+        2） ~：用于表示uri包含正则表达式，并且区分大小写                       
+        3） ~*：用于表示uri包含正则表达式，并且不区分大小写    
+        4） ^~：用于不含正则表达式的uri前，要求nginx服务器找到标识uri和请求字符串匹配度最高的location后，立即使用此location处理。
+        注意：如果uri包含正则表达式，则必须要有~或者~*标识。                           

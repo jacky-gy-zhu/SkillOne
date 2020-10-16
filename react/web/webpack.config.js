@@ -55,20 +55,6 @@ module.exports = {
                         test: /\.html$/,
                         loader: 'html-loader'
                     },
-                    // {
-                    //     test: /\.(js|jsx)$/,
-                    //     exclude: /node_modules/,
-                    //     loader: 'babel-loader',
-                    //     options: {
-                    //         "presets": [
-                    //             "@babel/preset-env",
-                    //             "@babel/preset-react",
-                    //             {
-                    //                 "plugins": ['@babel/plugin-proposal-class-properties']
-                    //             }
-                    //         ]
-                    //     }
-                    // },
                     {
                         test: /\.(js|jsx)$/,
                         exclude: /node_modules/,
@@ -76,7 +62,7 @@ module.exports = {
                             {
                                 loader: 'thread-loader',
                                 options: {
-                                    workers: 8 // 进程8个
+                                    workers: 8
                                 }
                             },
                             {

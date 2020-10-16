@@ -15,12 +15,12 @@ export default class App extends Component {
         return (
             <div>
                 <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-12">
                         <div className="page-header"><h2>React Router Demo1111</h2></div>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-md-8">
+                    <div className="col-md-4">
                         <div className="list-group">
                             <MyNavLink className="list-group-item" to="/home">Home</MyNavLink>
                             <MyNavLink className="list-group-item" to="/about">About</MyNavLink>
@@ -29,7 +29,7 @@ export default class App extends Component {
                             <MyNavLink className="list-group-item" to="/counter">Counter</MyNavLink>
                         </div>
                     </div>
-                    <div className="col-xs-6">
+                    <div className="col-xs-8">
                         <div className="panel">
                             <div className="panel-body">
                                 <Switch>

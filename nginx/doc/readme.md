@@ -123,3 +123,12 @@
             autoindex   on;
         }
     }
+
+## 高可用
+    安装keepalived
+        yum install keepalived -y
+        rpm -q -a keepalived  
+    目录
+        /etc/keepalived
+    配置文件
+        /etc/keepalived/keepalived.conf     

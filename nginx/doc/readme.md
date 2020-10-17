@@ -139,3 +139,7 @@
         ip a          
     停止keepalived
         killall keepalived    
+
+## worker数量
+    worker_processes 一般等同于cpu数量   
+    一般一个worker会暂用2个，或4个连接数（静态资源2个，tomcat2个，分别是request和response） 

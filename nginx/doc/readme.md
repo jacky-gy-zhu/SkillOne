@@ -131,4 +131,11 @@
     目录
         /etc/keepalived
     配置文件
-        /etc/keepalived/keepalived.conf     
+        /etc/keepalived/keepalived.conf
+    [修改keepalived.conf,添加一个nginx_check.sh]     
+    启动修改keepalived
+        systemctl start keepalived.service
+        ps -ef | grep keepalived  
+        ip a          
+    停止keepalived
+        killall keepalived    

@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const webpack = require('webpack')
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
-const PUBLIC_PATH = '/skillone/react/web/build/'
+const PUBLIC_PATH = '/'
 
 process.env.NODE_ENV = "production"
 

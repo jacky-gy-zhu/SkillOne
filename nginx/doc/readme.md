@@ -89,3 +89,37 @@
             } 
 
 ## 动静分离
+    server {
+        listen       9000;
+        server_name  47.90.105.193;
+
+        location / {
+            root    /home/web/learning/react/build/;
+            index   index.html;
+        }
+
+        location /css/ {
+            root    /home/web/learning/react/build/;
+            autoindex   on;
+        }
+
+        location /js/ {
+            root    /home/web/learning/react/build/;
+            autoindex   on;
+        }
+
+        location /imgs/ {
+            root    /home/web/learning/react/build/;
+            autoindex   on;
+        }
+
+        location /plugin/ {
+            root    /home/web/learning/react/build/;
+            autoindex   on;
+        }
+
+        location /media/ {
+            root    /home/web/learning/react/build/;
+            autoindex   on;
+        }
+    }

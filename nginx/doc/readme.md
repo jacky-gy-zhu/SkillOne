@@ -69,3 +69,23 @@
             proxy_pass  http://myserver;
         }
     }
+### 负载均衡方式
+    1. 轮询：默认方式，一旦某个服务器断了，会自动访问另外一台服务器
+    2. 权重：权重大的访问几率大
+        server  47.90.105.193:8080  weight=10;
+        server  47.90.105.193:8080  weight=15;
+    3. ip_hash：可以保证某一个ip地址只会访问固定一台服务器，解决session问题
+            upstream myserver {
+                ip_hash;   
+                server  47.90.105.193:8080;
+                server  47.90.105.193:8081;
+            }  
+    4. fair方式
+        按后端服务器的响应时间来分配请求，响应时间越短的优先分配
+            upstream myserver {
+                server  47.90.105.193:8080;
+                server  47.90.105.193:8081;
+                fair;    
+            } 
+
+## 动静分离

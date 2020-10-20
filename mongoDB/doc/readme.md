@@ -82,3 +82,13 @@
     }
     db.numbers.insert(arr);
 
+### sort
+    默认按照_id升序排列
+    sort()可以用来指定文档的排序规则
+    db.emp.find({}).sort({sal:1, emp:-1});  [1表示升序，-1表示降序]
+    limit, skip, sort 可以任意的顺序进行调用
+
+### projection
+    在查询时，在第二个参数的位置设置查询结果的投影
+    db.emp.find({}, {name:1, _id:0, sal:1});    [1表示显示，0表示不显示]
+

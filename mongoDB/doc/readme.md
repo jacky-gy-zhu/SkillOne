@@ -55,6 +55,8 @@
     $unset 删除操作符
     $push 向数组中添加新的元素(可重复)
     $addToSet 向数组中添加新的元素(不会重复)
+    $or     {$or:[{a:1},{b:2}]}
+    $inc    [把原来的值的基础上自增]
     db.<collection>.updateMany(查询条件)
     db.<collection>.updateOne(查询条件)
     db.<collection>.remove(查询条件)    [根据条件删除]

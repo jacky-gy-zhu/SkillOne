@@ -18,6 +18,7 @@
         <module>webpack</module>
         <module>nginx</module>
         <module>mongoDB</module>
+        <module>myBatis</module>
     </modules>
 
 

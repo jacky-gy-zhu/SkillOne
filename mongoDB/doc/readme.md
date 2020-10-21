@@ -1,7 +1,7 @@
 # MongoDB
 
 ## run with docker
-    docker run -d p 2717:27017 -v ~/docker/mongodb-docker:/data/db --name mongoDB mongo:latest
+    docker run -d p 2717:27017 -v ~/docker/mongodb-docker:/data/db --name mongoDB mongo
     docker exec -it mongoDB bash
     mongo // run mongo
     > show dbs
@@ -12,6 +12,10 @@
     
     // run mongo out of mongo container but still in the docker
     mongo localhost:2717
+    
+    // 启动mysql
+    docker run -d --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v ~/docker/mysql-docker:/var/lib/mysql mysql 
+    docker exec -it mysql bash
 
 ## 一些配置
     mongod --dbpath `配置新/data/db数据库路径` --port `新端口号port` 【端口号最大不能超过65535 】

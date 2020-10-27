@@ -45,7 +45,18 @@
         </environment>
     </environments>
 
+    <!-- 支持多数据库厂商 MySQL | Oracle | SQL Server-->
+    <databaseIdProvider type="DB_VENDOR">
+    <!-- 不同多数据库厂商取别名 -->
+    <!--        在XxxMapper.xml中写databaseId="mysql"  -->
+        <property name="MySQL" value="mysql"/>
+        <property name="Oracle" value="oracle"/>
+        <property name="SQL Server" value="sqlServer"/>
+    </databaseIdProvider>
+
     <mappers>
+<!--        url：引用网络路径或者本地磁盘路径file://xxx/xxx/-->
+        <mapper url=""/>
         <mapper resource="EmployeeMapper.xml"/>
     </mappers>
 

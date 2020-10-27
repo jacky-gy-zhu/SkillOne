@@ -1,5 +1,8 @@
-package com.skillone.mybatis;
+package com.skillone.mybatis.bean;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("emp1")
 public class Employee {
     private Integer id;
     private String lastName;

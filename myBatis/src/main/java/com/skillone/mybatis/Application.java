@@ -1,5 +1,6 @@
 package com.skillone.mybatis;
 
+import com.skillone.mybatis.bean.Employee;
 import com.skillone.mybatis.dao.EmployeeMapper;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

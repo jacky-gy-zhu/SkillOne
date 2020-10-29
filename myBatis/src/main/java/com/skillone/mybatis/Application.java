@@ -2,6 +2,7 @@ package com.skillone.mybatis;
 
 import com.skillone.mybatis.bean.Employee;
 import com.skillone.mybatis.dao.EmployeeMapper;
+import com.skillone.mybatis.dao.EmployeeMapperAnnotation;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -24,7 +25,8 @@ public class Application {
 
     public static void main(String[] args) throws IOException {
 //        basicOperation();
-        interfaceOperation();
+//        interfaceOperation();
+        interfaceOperationAnnotation();
     }
 
     private static void basicOperation() throws IOException {
@@ -47,6 +49,23 @@ public class Application {
             //3. get object (actually is a object proxy)
             // 会为接口自动创建一个代理对象，代理对象会去执行增删改查
             EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+            System.out.println(employeeMapper);
+
+            Employee employee = employeeMapper.getEmpById(1);
+
+            System.out.println(employee);
+        }
+    }
+
+    private static void interfaceOperationAnnotation() throws IOException {
+        //1. get sqlSessionFactory object
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+
+        //2. get sqlSession obj
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            //3. get object (actually is a object proxy)
+            // 会为接口自动创建一个代理对象，代理对象会去执行增删改查
+            EmployeeMapperAnnotation employeeMapper = sqlSession.getMapper(EmployeeMapperAnnotation.class);
             System.out.println(employeeMapper);
 
             Employee employee = employeeMapper.getEmpById(1);

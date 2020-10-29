@@ -61,9 +61,11 @@
             class引用注册接口
                 1. 有sql映射文件，映射文件名必须和接口同名，并且放在与接口同一目录下
                 2. 没有sql映射文件，所有的sql都是利用注解写在接口上
+                推荐：比较重要的，复杂的Dao接口我们来写sql映射文件
+                不重要， 简单的Dao接口为了开发接口可以使用注解
 -->
 <!--        <mapper url=""/>-->
-<!--        <mapper resource="EmployeeMapper.xml"/>-->
+        <mapper resource="EmployeeMapper.xml"/>
 <!--        <mapper class="com.skillone.mybatis.dao.EmployeeMapper"/>-->
         <mapper class="com.skillone.mybatis.dao.EmployeeMapperAnnotation"/>
     </mappers>

@@ -65,9 +65,12 @@
                 不重要， 简单的Dao接口为了开发接口可以使用注解
 -->
 <!--        <mapper url=""/>-->
-        <mapper resource="EmployeeMapper.xml"/>
+<!--        <mapper resource="EmployeeMapper.xml"/>-->
 <!--        <mapper class="com.skillone.mybatis.dao.EmployeeMapper"/>-->
-        <mapper class="com.skillone.mybatis.dao.EmployeeMapperAnnotation"/>
+<!--        <mapper class="com.skillone.mybatis.dao.EmployeeMapperAnnotation"/>-->
+
+<!--        包名下批量注册-->
+        <package name="com.skillone.mybatis.dao"/>
     </mappers>
 
 </configuration>

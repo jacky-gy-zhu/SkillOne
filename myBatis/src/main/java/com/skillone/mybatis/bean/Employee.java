@@ -7,7 +7,7 @@ public class Employee {
     private Integer id;
     private String lastName;
     private String email;
-    private String gender;
+    private Boolean gender;
 
     public Integer getId() {
         return id;
@@ -33,11 +33,21 @@ public class Employee {
         this.email = email;
     }
 
-    public String getGender() {
+    public Boolean getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Boolean gender) {
+        this.gender = gender;
+    }
+
+    public Employee() {
+    }
+
+    public Employee(Integer id, String lastName, String email, Boolean gender) {
+        this.id = id;
+        this.lastName = lastName;
+        this.email = email;
         this.gender = gender;
     }
 

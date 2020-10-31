@@ -8,6 +8,8 @@
     
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="useActualParamName" value="true"/>
+        <setting name="jdbcTypeForNull" value="NULL"/>
     </settings>
 
     <!-- 别名不区分大小写 (建议用全类名，不用别名 ) -->

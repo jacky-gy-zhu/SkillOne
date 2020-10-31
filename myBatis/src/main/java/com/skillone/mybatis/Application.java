@@ -90,7 +90,7 @@ public class Application {
             // 会为接口自动创建一个代理对象，代理对象会去执行增删改查
             EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
 
-            Employee emp = new Employee(null, "Jacky", "jacky@gmail.com", true);
+            Employee emp = new Employee(null, "Jacky", null, true);
             Integer id = employeeMapper.addEmp(emp);
             System.out.println("增加了一行：" + emp);
 

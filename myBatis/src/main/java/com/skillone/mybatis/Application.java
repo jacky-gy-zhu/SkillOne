@@ -228,9 +228,11 @@ public class Application {
 
             Employee employee = employeeMapper.getEmpById(1);
             Employee employee2 = employeeMapper.getEmpAndDept(1);
+            Employee employee3 = employeeMapper.getEmpByIdStep(1);
 
             System.out.println(employee);
             System.out.println(employee2);
+            System.out.println(employee3);
         }
     }
 

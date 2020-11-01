@@ -3,6 +3,7 @@ package com.skillone.mybatis;
 import com.skillone.mybatis.bean.Employee;
 import com.skillone.mybatis.dao.EmployeeMapper;
 import com.skillone.mybatis.dao.EmployeeMapperAnnotation;
+import com.skillone.mybatis.dao.EmployeeMapperPlus;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -11,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,7 +34,12 @@ public class Application {
 //        crud();
 //        multiSelect();
 //        selectPojo();
-        selectByMap();
+//        selectByMap();
+//        selectList();
+//        selectMap();
+//        selectMapKey();
+
+        selectResultMap();
     }
 
     private static void basicOperation() throws IOException {
@@ -156,6 +163,74 @@ public class Application {
             Employee employee = employeeMapper.getEmpByMap(paramMap);
 
             System.out.println(employee);
+        }
+    }
+
+    private static void selectList() throws IOException {
+        //1. get sqlSessionFactory object
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+
+        //2. get sqlSession obj
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            //3. get object (actually is a object proxy)
+            // 会为接口自动创建一个代理对象，代理对象会去执行增删改查
+            EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+
+            List<Employee> list = employeeMapper.findEmpsByLastNameLike("Jacky");
+
+            System.out.println(list);
+        }
+    }
+
+    private static void selectMap() throws IOException {
+        //1. get sqlSessionFactory object
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+
+        //2. get sqlSession obj
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            //3. get object (actually is a object proxy)
+            // 会为接口自动创建一个代理对象，代理对象会去执行增删改查
+            EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+
+            Map<String, Object> map = employeeMapper.getEmpByIdReturnMap(1);
+
+            System.out.println(map);
+        }
+    }
+
+    private static void selectMapKey() throws IOException {
+        //1. get sqlSessionFactory object
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+
+        //2. get sqlSession obj
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            //3. get object (actually is a object proxy)
+            // 会为接口自动创建一个代理对象，代理对象会去执行增删改查
+            EmployeeMapper employeeMapper = sqlSession.getMapper(EmployeeMapper.class);
+
+            Map<Integer, Employee> map = employeeMapper.getEmpByLastNameLikeReturnMap("Jacky");
+            Map<String, Employee> map2 = employeeMapper.getEmpByLastNameLikeReturnMap2("Jacky");
+
+            System.out.println(map);
+            System.out.println(map2);
+        }
+    }
+
+    private static void selectResultMap() throws IOException {
+        //1. get sqlSessionFactory object
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+
+        //2. get sqlSession obj
+        try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+            //3. get object (actually is a object proxy)
+            // 会为接口自动创建一个代理对象，代理对象会去执行增删改查
+            EmployeeMapperPlus employeeMapper = sqlSession.getMapper(EmployeeMapperPlus.class);
+
+            Employee employee = employeeMapper.getEmpById(1);
+            Employee employee2 = employeeMapper.getEmpAndDept(1);
+
+            System.out.println(employee);
+            System.out.println(employee2);
         }
     }
 

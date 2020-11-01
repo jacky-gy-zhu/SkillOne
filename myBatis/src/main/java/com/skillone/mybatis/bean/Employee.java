@@ -8,6 +8,7 @@ public class Employee {
     private String lastName;
     private String email;
     private Boolean gender;
+    private Department department;
 
     public Integer getId() {
         return id;
@@ -41,6 +42,14 @@ public class Employee {
         this.gender = gender;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
     public Employee() {
     }
 
@@ -51,13 +60,22 @@ public class Employee {
         this.gender = gender;
     }
 
+    public Employee(Integer id, String lastName, String email, Boolean gender, Department department) {
+        this.id = id;
+        this.lastName = lastName;
+        this.email = email;
+        this.gender = gender;
+        this.department = department;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", gender='" + gender + '\'' +
+                ", gender=" + gender +
+                ", department=" + department +
                 '}';
     }
 }

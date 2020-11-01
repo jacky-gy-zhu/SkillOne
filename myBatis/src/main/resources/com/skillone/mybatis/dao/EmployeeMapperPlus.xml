@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.skillone.mybatis.dao.EmployeeMapperPlus">
+
+<!--    自定义某个javaBean的封装规则
+        type：自定义的Java类型
+        id：唯一id方便引用
+-->
+    <resultMap id="MyEmp" type="com.skillone.mybatis.bean.Employee">
+<!--        指定主键列的封装规则
+            id定义主键会底层有优化；
+            column：指定哪一列
+            property：指定对应的javaBean属性
+-->
+        <id column="id" property="id"/>
+        <result column="last_name" property="lastName"/>
+<!--        其他不指定的列会自动封装，但是为了维护方便，我们还是把所有的映射关系都指定上-->
+        <result column="email" property="email"/>
+        <result column="gender" property="gender"/>
+        <result column="did" property="department.id"/>
+        <result column="dname" property="department.name"/>
+    </resultMap>
+
+<!--    resultMap自定义结果集映射规则，（用了就不能用resultType）-->
+    <select id="getEmpById" resultMap="MyEmp">
+        select * from tbl_employee where id = #{id}
+    </select>
+
+    <select id="getEmpAndDept" resultMap="MyEmp">
+        select emp.*, dept.id did, dept.name dname from tbl_employee emp
+        left join tbl_department dept
+            on dept.id = emp.dept_id
+        where emp.id = #{id}
+    </select>
+
+</mapper>

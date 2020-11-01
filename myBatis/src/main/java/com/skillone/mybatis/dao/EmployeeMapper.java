@@ -1,8 +1,10 @@
 package com.skillone.mybatis.dao;
 
 import com.skillone.mybatis.bean.Employee;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,5 +31,16 @@ public interface EmployeeMapper {
     Employee getEmpByPojo(Employee employee);
 
     Employee getEmpByMap(Map<String, Object> paramMap);
+
+    List<Employee> findEmpsByLastNameLike(String lastName);
+
+    // 返回一条记录的map；key就是列名，值就是对应的值
+    Map<String, Object> getEmpByIdReturnMap(Integer id);
+
+    // 返回多条记录封装一个map：Map<Integer, Employee>:键是这个记录的主
+    @MapKey("id")
+    Map<Integer, Employee> getEmpByLastNameLikeReturnMap(String lastName);
+    @MapKey("lastName")
+    Map<String, Employee> getEmpByLastNameLikeReturnMap2(String lastName);
 
 }

@@ -110,8 +110,8 @@ export function ProductsUpdateStatusDialog({ show, onHide }) {
             value={status}
             onChange={(e) => setStatus(+e.target.value)}
           >
-            <option value="0">Selling</option>
-            <option value="1">Sold</option>
+            <option value="0">Pending</option>
+            <option value="1">Approved</option>
           </select>
         </div>
         <div className="form-group">

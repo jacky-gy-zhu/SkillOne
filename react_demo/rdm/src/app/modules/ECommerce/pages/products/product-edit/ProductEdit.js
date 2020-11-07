@@ -58,9 +58,9 @@ export function ProductEdit({
   }, [id, dispatch]);
 
   useEffect(() => {
-    let _title = id ? "" : "New Product";
+    let _title = id ? "" : "Create Agreement";
     if (productForEdit && id) {
-      _title = `Edit product '${productForEdit.manufacture} ${productForEdit.model} - ${productForEdit.modelYear}'`;
+      _title = `Edit Agreement '${productForEdit.manufacture} ${productForEdit.model} - ${productForEdit.modelYear}'`;
     }
 
     setTitle(_title);
@@ -124,33 +124,33 @@ export function ProductEdit({
               role="tab"
               aria-selected={(tab === "basic").toString()}
             >
-              Basic info
+              Vendor
             </a>
           </li>
           {id && (
-            <>
+              <>
               {" "}
-              <li className="nav-item" onClick={() => setTab("remarks")}>
-                <a
-                  className={`nav-link ${tab === "remarks" && "active"}`}
-                  data-toggle="tab"
-                  role="button"
-                  aria-selected={(tab === "remarks").toString()}
-                >
-                  Product remarks
-                </a>
-              </li>
-              <li className="nav-item" onClick={() => setTab("specs")}>
-                <a
-                  className={`nav-link ${tab === "specs" && "active"}`}
-                  data-toggle="tab"
-                  role="tab"
-                  aria-selected={(tab === "specs").toString()}
-                >
-                  Product specifications
-                </a>
-              </li>
-            </>
+          <li className="nav-item" onClick={() => setTab("remarks")}>
+            <a
+                className={`nav-link ${tab === "remarks" && "active"}`}
+                data-toggle="tab"
+                role="button"
+                aria-selected={(tab === "remarks").toString()}
+            >
+              Rule Types
+            </a>
+          </li>
+          <li className="nav-item" onClick={() => setTab("specs")}>
+            <a
+                className={`nav-link ${tab === "specs" && "active"}`}
+                data-toggle="tab"
+                role="tab"
+                aria-selected={(tab === "specs").toString()}
+            >
+              Terms & Conditions
+            </a>
+          </li>
+              </>
           )}
         </ul>
         <div className="mt-5">

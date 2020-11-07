@@ -74,6 +74,8 @@ export function ListPage({ history }) {
           />
         )}
       </Route>
+
+        {/* Agreement list page */}
       <ProductsCard />
     </ProductsUIProvider>
   );

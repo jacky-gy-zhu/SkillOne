@@ -62,8 +62,8 @@ export function ProductEditForm({
                   <Field
                     name="model"
                     component={Input}
-                    placeholder="Model"
-                    label="Model"
+                    placeholder="Data Source"
+                    label="Data Source"
                   />
                 </div>
                 <div className="col-lg-4">
@@ -80,8 +80,8 @@ export function ProductEditForm({
                     type="number"
                     name="modelYear"
                     component={Input}
-                    placeholder="Model year"
-                    label="Model year"
+                    placeholder="Vendor"
+                    label="Vendor"
                   />
                 </div>
               </div>
@@ -91,8 +91,8 @@ export function ProductEditForm({
                     type="number"
                     name="mileage"
                     component={Input}
-                    placeholder="Mileage"
-                    label="Mileage"
+                    placeholder="Grouping"
+                    label="Grouping"
                   />
                 </div>
                 <div className="col-lg-4">
@@ -109,8 +109,8 @@ export function ProductEditForm({
                     type="number"
                     name="price"
                     component={Input}
-                    placeholder="Price"
-                    label="Price ($)"
+                    placeholder="Base Currency"
+                    label="Base Currency"
                     customFeedbackLabel="Please enter Price"
                   />
                 </div>
@@ -120,8 +120,8 @@ export function ProductEditForm({
                   <Field
                     name="VINCode"
                     component={Input}
-                    placeholder="VIN code"
-                    label="VIN code"
+                    placeholder="Collection Method"
+                    label="Collection Method"
                   />
                 </div>
                 <div className="col-lg-4">

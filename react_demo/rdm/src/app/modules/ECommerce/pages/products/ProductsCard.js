@@ -28,14 +28,14 @@ export function ProductsCard() {
 
   return (
     <Card>
-      <CardHeader title="Products list">
+      <CardHeader title="Agreements">
         <CardHeaderToolbar>
           <button
             type="button"
             className="btn btn-primary"
             onClick={productsUIProps.newProductButtonClick}
           >
-            New Product
+            Create Agreement
           </button>
         </CardHeaderToolbar>
       </CardHeader>
@@ -46,6 +46,7 @@ export function ProductsCard() {
             <ProductsGrouping />
           </>
         )}
+        {/* data list */}
         <ProductsTable />
       </CardBody>
     </Card>

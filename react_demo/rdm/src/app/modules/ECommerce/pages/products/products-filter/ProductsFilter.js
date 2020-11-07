@@ -73,31 +73,11 @@ export function ProductsFilter({ listLoading }) {
                   value={values.status}
                 >
                   <option value="">All</option>
-                  <option value="0">Selling</option>
-                  <option value="1">Sold</option>
+                  <option value="0">Pending</option>
+                  <option value="1">Approved</option>
                 </select>
                 <small className="form-text text-muted">
                   <b>Filter</b> by Status
-                </small>
-              </div>
-              <div className="col-lg-2">
-                <select
-                  className="form-control"
-                  placeholder="Filter by Type"
-                  name="condition"
-                  onBlur={handleBlur}
-                  onChange={(e) => {
-                    setFieldValue("condition", e.target.value);
-                    handleSubmit();
-                  }}
-                  value={values.condition}
-                >
-                  <option value="">All</option>
-                  <option value="0">New</option>
-                  <option value="1">Used</option>
-                </select>
-                <small className="form-text text-muted">
-                  <b>Filter</b> by Condition
                 </small>
               </div>
               <div className="col-lg-2">

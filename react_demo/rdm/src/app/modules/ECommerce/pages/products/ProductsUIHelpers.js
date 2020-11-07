@@ -1,7 +1,7 @@
 export const ProductStatusCssClasses = ["success", "info", ""];
-export const ProductStatusTitles = ["Selling", "Sold"];
+export const ProductStatusTitles = ["Pending", "Approved"];
 export const ProductConditionCssClasses = ["success", "danger", ""];
-export const ProductConditionTitles = ["New", "Used"];
+export const ProductConditionTitles = ["Praveen", "Jacky"];
 export const defaultSorted = [{ dataField: "id", order: "asc" }];
 export const sizePerPageList = [
   { text: "3", value: 3 },

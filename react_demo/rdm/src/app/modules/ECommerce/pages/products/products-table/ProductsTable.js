@@ -53,38 +53,38 @@ export function ProductsTable() {
   const columns = [
     {
       dataField: "VINCode",
-      text: "VIN Code (ID)",
+      text: "Agreement ID",
       sort: true,
       sortCaret: sortCaret,
     },
     {
       dataField: "manufacture",
-      text: "Manufacture",
+      text: "Vendor Name",
       sort: true,
       sortCaret: sortCaret,
     },
     {
       dataField: "model",
-      text: "Model",
+      text: "Description",
       sort: true,
       sortCaret: sortCaret,
     },
     {
       dataField: "modelYear",
-      text: "Model Year",
+      text: "Start Date",
       sort: true,
       sortCaret: sortCaret,
     },
     {
       dataField: "color",
-      text: "Color",
+      text: "End Date",
       sort: true,
       sortCaret: sortCaret,
       formatter: columnFormatters.ColorColumnFormatter,
     },
     {
       dataField: "price",
-      text: "Price",
+      text: "Notes",
       sort: true,
       sortCaret: sortCaret,
       formatter: columnFormatters.PriceColumnFormatter,
@@ -98,14 +98,14 @@ export function ProductsTable() {
     },
     {
       dataField: "condition",
-      text: "Condition",
+      text: "Created By",
       sort: true,
       sortCaret: sortCaret,
       formatter: columnFormatters.ConditionColumnFormatter,
     },
     {
       dataField: "action",
-      text: "Actions",
+      text: "Action",
       formatter: columnFormatters.ActionsColumnFormatter,
       formatExtraData: {
         openEditProductPage: productsUIProps.openEditProductPage,

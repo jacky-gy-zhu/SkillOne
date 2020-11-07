@@ -2,7 +2,8 @@ import React, { useMemo } from "react";
 import { Formik } from "formik";
 import { isEqual } from "lodash";
 import { useProductsUIContext } from "../ProductsUIContext";
-import {Button, ButtonToolbar} from "react-bootstrap";
+import {Button, ButtonToolbar, Col, Form, Modal, Row, Tab, Tabs} from "react-bootstrap";
+import {DatePickerField, KTCodeExample} from "../../../../../../_metronic/_partials/controls";
 
 const prepareFilter = (queryParams, values) => {
   const { status, condition, searchText } = values;
@@ -101,16 +102,7 @@ export function ProductsFilter({ listLoading }) {
               </div>
 
               <div className="col-lg-2">
-                <ButtonToolbar>
-                  <Button
-                      variant="primary"
-                      onClick={() => this.setState({ modalShow: true })}
-                  >
-                    Advance Search
-                  </Button>
-
-
-                </ButtonToolbar>
+                <AdvanceSearchApp />
               </div>
             </div>
           </form>
@@ -118,4 +110,215 @@ export function ProductsFilter({ listLoading }) {
       </Formik>
     </>
   );
+}
+
+class MyVerticallyCenteredModal extends React.Component {
+
+  render() {
+    return (
+        <Modal
+            {...this.props}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Agreement Search
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form>
+              <Tabs defaultActiveKey="general" id="uncontrolled-tab-example">
+                <Tab eventKey="general" title="General">
+                  <div className="my-7"></div>
+                  <span>Agreement</span>
+                  <div className="separator separator-dashed my-7"></div>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      Agreement ID:
+                    </Form.Label>
+                    <Col sm="8">
+                      <Form.Control type="text" placeholder="" />
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      Agreement Desc:
+                    </Form.Label>
+                    <Col sm="8">
+                      <Form.Control type="text" placeholder="" />
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      Vendor:
+                    </Form.Label>
+                    <Col sm="8">
+                      <Form.Control as="select">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </Form.Control>
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      Start Date:
+                    </Form.Label>
+                    <Col sm="8">
+                      <DatePickerField
+                          name="dateOfBbirth"
+                          label=""
+                      />
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      End Date:
+                    </Form.Label>
+                    <Col sm="8">
+                      <DatePickerField
+                          name="dateOfBbirth2"
+                          label=""
+                      />
+                    </Col>
+                  </Form.Group>
+                </Tab>
+                <Tab eventKey="advanced" title="Advanced">
+                  <div className="my-7"></div>
+                  <span>Rule</span>
+                  <div className="separator separator-dashed my-7"></div>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      Rule ID:
+                    </Form.Label>
+                    <Col sm="8">
+                      <Form.Control type="text" placeholder="" />
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      Rule Description:
+                    </Form.Label>
+                    <Col sm="8">
+                      <Form.Control type="text" placeholder="" />
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      Buying Group:
+                    </Form.Label>
+                    <Col sm="8">
+                      <Form.Control as="select">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </Form.Control>
+                    </Col>
+                  </Form.Group>
+                </Tab>
+                <Tab eventKey="contributes" title="Contributes">
+                  <div className="my-7"></div>
+                  <span>Contributes</span>
+                  <div className="separator separator-dashed my-7"></div>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      Creator:
+                    </Form.Label>
+                    <Col sm="8">
+                      <Form.Control as="select">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </Form.Control>
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      Category Manager:
+                    </Form.Label>
+                    <Col sm="8">
+                      <Form.Control as="select">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </Form.Control>
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      Buyer:
+                    </Form.Label>
+                    <Col sm="8">
+                      <Form.Control as="select">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </Form.Control>
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} controlId="formPlaintextEmail">
+                    <Form.Label column sm="4">
+                      Approvers:
+                    </Form.Label>
+                    <Col sm="8">
+                      <Form.Control as="select">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </Form.Control>
+                    </Col>
+                  </Form.Group>
+                </Tab>
+              </Tabs>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={this.props.onHide}>Search</Button>
+            <Button variant="secondary" onClick={this.props.onHide}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+    );
+  }
+}
+
+class AdvanceSearchApp extends React.Component {
+  constructor(...args) {
+    super(...args);
+
+    this.state = { modalShow: false };
+  }
+
+  render() {
+    let modalClose = () => this.setState({ modalShow: false });
+
+    return (
+        <ButtonToolbar>
+          <Button
+              variant="primary"
+              onClick={() => this.setState({ modalShow: true })}
+          >
+            Advance Search
+          </Button>
+
+          <MyVerticallyCenteredModal
+              show={this.state.modalShow}
+              onHide={modalClose}
+          />
+        </ButtonToolbar>
+    );
+  }
 }

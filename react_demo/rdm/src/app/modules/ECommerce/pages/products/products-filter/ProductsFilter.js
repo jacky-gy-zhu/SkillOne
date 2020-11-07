@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { Formik } from "formik";
 import { isEqual } from "lodash";
 import { useProductsUIContext } from "../ProductsUIContext";
+import {Button, ButtonToolbar} from "react-bootstrap";
 
 const prepareFilter = (queryParams, values) => {
   const { status, condition, searchText } = values;
@@ -80,6 +81,7 @@ export function ProductsFilter({ listLoading }) {
                   <b>Filter</b> by Status
                 </small>
               </div>
+
               <div className="col-lg-2">
                 <input
                   type="text"
@@ -96,6 +98,19 @@ export function ProductsFilter({ listLoading }) {
                 <small className="form-text text-muted">
                   <b>Search</b> in all fields
                 </small>
+              </div>
+
+              <div className="col-lg-2">
+                <ButtonToolbar>
+                  <Button
+                      variant="primary"
+                      onClick={() => this.setState({ modalShow: true })}
+                  >
+                    Advance Search
+                  </Button>
+
+
+                </ButtonToolbar>
               </div>
             </div>
           </form>

@@ -3,7 +3,8 @@ import { Formik } from "formik";
 import { isEqual } from "lodash";
 import { useProductsUIContext } from "../ProductsUIContext";
 import {Button, ButtonToolbar, Col, Form, Modal, Row, Tab, Tabs} from "react-bootstrap";
-import {DatePickerField, KTCodeExample} from "../../../../../../_metronic/_partials/controls";
+import {DatePickerField} from "../../../../../../_metronic/_partials/controls";
+import TransferListExamplesPage from "./TransferList.js";
 
 const prepareFilter = (queryParams, values) => {
   const { status, condition, searchText } = values;
@@ -186,6 +187,7 @@ class MyVerticallyCenteredModal extends React.Component {
                       />
                     </Col>
                   </Form.Group>
+                  <TransferListExamplesPage/>
                 </Tab>
                 <Tab eventKey="advanced" title="Advanced">
                   <div className="my-7"></div>

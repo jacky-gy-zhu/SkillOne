@@ -8,14 +8,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class SecurityCustomConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
 
-    public SecurityCustomConfig(UserDetailsService userDetailsService) {
+    private final DataSource dataSource;
+
+    public SecurityCustomConfig(UserDetailsService userDetailsService, DataSource dataSource) {
         this.userDetailsService = userDetailsService;
+        this.dataSource = dataSource;
     }
 
     @Override
@@ -42,6 +49,12 @@ public class SecurityCustomConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/security/index").hasAnyAuthority("admin","role2")
                 .antMatchers("/security/index").hasRole("sales")
                 .anyRequest().authenticated()
+
+                // remember me
+                .and().rememberMe().tokenRepository(persistentTokenRepository())
+                .tokenValiditySeconds(60) //设置有效时长，秒为单位
+                .userDetailsService(userDetailsService)
+
                 .and().csrf().disable();    //关闭csrf防护
 
     }
@@ -49,5 +62,14 @@ public class SecurityCustomConfig extends WebSecurityConfigurerAdapter {
     @Bean
     PasswordEncoder password() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource);
+        // auto create table persistent_logins
+//        jdbcTokenRepository.setCreateTableOnStartup(true);
+        return jdbcTokenRepository;
     }
 }

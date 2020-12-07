@@ -1,0 +1,17 @@
+docker run
+ -e PREFER_HOST_MODE=hostname
+ -e MODE=standalone
+ -e SPRING_DATASOURCE_PLATFORM=mysql
+ -e MYSQL_SERVICE_HOST=localhost
+ -e MYSQL_SERVICE_PORT=3306
+ -e MYSQL_SERVICE_DB_NAME=nacos_pub
+ -e MYSQL_SERVICE_USER=root
+ -e MYSQL_SERVICE_PASSWORD=123456
+ -e NACOS_AUTH_ENABLE=true
+ --network host
+ -v /opt/nacos/plugins/mysql:/Users/jackyzhu/docker/nacos-docker/plugins/mysql/
+ -v /opt/nacos/logs:/Users/jackyzhu/docker/nacos-docker/logs/
+ nacos/nacos-server
+
+
+ docker run -e PREFER_HOST_MODE=hostname -e MODE=standalone -e SPRING_DATASOURCE_PLATFORM=mysql -e MYSQL_SERVICE_HOST=localhost -e MYSQL_SERVICE_PORT=3306 -e MYSQL_SERVICE_DB_NAME=nacos_pub -e MYSQL_SERVICE_USER=root -e MYSQL_SERVICE_PASSWORD=123456 -e NACOS_AUTH_ENABLE=true --network host -v /opt/nacos/plugins/mysql:/Users/jackyzhu/docker/nacos-docker/plugins/mysql/ -v /opt/nacos/logs:/Users/jackyzhu/docker/nacos-docker/logs/ nacos/nacos-server
